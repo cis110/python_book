@@ -121,7 +121,21 @@ print("In three years, I will be:")
 print(my_name + 3)
 ```
 
-The above program *runs*, although it is quite confusing. If you were to write this code and then come back to it a few days late, you might find yourself asking: "Why is `my_name` 27? Shouldn't a name be a string?"
+The above program *runs*, although it is quite confusing. If you were to write this code and then come back to it a few days late, you might find yourself asking: "Why is `my_name` 27? Shouldn't a name be a string?" You should always make an effort to preserve the type of a variable over time.
+
+Before we move on from updating variables, let's take a look at one last example.
+
+```python
+count = 0
+count = count + 1
+count = count + 2
+count = count + 10
+print(count) # What gets printed?
+```
+
+At a first glance, this might be quite confusing! How do we reassign a variable *in terms of itself?* The answer comes by following the rule described above: *the value stored inside of a variable during assignment is the result of evaluating the right-hand side expression at the moment the assignment is done.* On the first line, `count` is set to be `0`. When the second line is executed, we first evaluate the right-hand side. At this moment, `count` has the value `0` stored inside, so the value of `count + 1` is `1`. We store the value `1` inside of the variable on the left-hand side, which is `count`. After line 2, count now has the value `1`. We repeat the process on line 3: `count` is currently `1`, so we compute the value `3` on the right-hand side and store that inside of `count`, the variable on the left. Repeat once more, where the value of the expression on the right is `13`--can you see why?--and so when we get to line 5, `count` is finally storing the value of `13`, which is what gets printed. Verify this for yourself by running the program.
+
+Reassigning a variable in terms of itself is a common practice. It allows us to count the number of times certain events happen, or to accumulate interest by repeatedly multiplying a quantity by an interest rate, or to run a timer counting down to zero with each passing second.
 
 ### Leap Year, Redux
 
@@ -159,24 +173,68 @@ Thanks to our descriptive variable naming scheme, the full leap year calculation
 
 We have spread the program over more lines, but each individual line is now a bit easier to understand. We have generated a program that is *self-commenting*, meaning that it is written in a way that makes the purpose of the code clear without much additional explanation required. This is one of the benefits of Python as a language and it is something that we should strive for in the programs that we write throughout this course.
 
-- Creates a variable
-- Associates a variable to a type
-  - The type determines how much space (bits) the computer will use to store the value associated with the variable.
+## More Powerful Printing 🖨️
 
-Examples
-```java
-// declaring the variable score
-double score;
+As you've seen in the examples throughout this chapter, it's possible to use `print()` to view the contents of a variable. Want to know what a variable stores at some point in your program? Print it out!
 
-// declaring the variable age
-int age;
+```python
+mystery = "hooooo egassem terces"[::-1]
+print(mystery)
 ```
 
+Now that we are capable of writing programs that manipulate data, it will be helpful to have concise but informative ways of printing out one or more values. To start, if you want to print out multiple pieces of information on a single line, each separated with a space, you can do so by interleaving commas (`,`) between the things you want to print.
+
+```python
+num_bottles = 99
+print(num_bottles, "bottles of beer on the wall,", num_bottles, "bottles of beer...")
+# prints out "99 bottles of beer on the wall, 99 bottles of beer..."
+```
+
+This is a nice, straightforward way of putting a bunch of different pieces of information on the same output line. Notice that while variables have their values printed, the strings that we put in (recognize them by the `"` characters that surround them) are printed literally. Nowhere in the printed output do we see the literal `n`, `u`, `m`, `_`... characters of `num_bottles`: the name of the variable is not printed.
 
 
+Each time we write `print()`, the information inside of that print statement all goes on its own line. Modifying the previous program slightly, we see that the extended output is now spread across multiple lines:
 
+```python
+num_bottles = 99
+print(num_bottles, "bottles of beer on the wall,", num_bottles, "bottles of beer...")
+print("Take one down, pass it around!")
+num_bottles = num_bottles - 1 # decrease the value stored in num_bottles by one
+print(num_bottles, "bottles of beer on the wall.")
+```
+```
+99 bottles of beer on the wall, 99 bottles of beer...
+Take one down, pass it around!
+98 bottles of beer on the wall.
+```
 
+We can take this a step further using *f-strings*. An f-string is a slight variation of a typical string that is denoted by placing an `f` right before the start of the string, as in:
 
+```python
+msg = f"this is a simple f-string. You can tell by the f."
+```
+
+If we printed out `msg`, the output would be exactly the content of the f-string seen in the example above; that is, on their own, f-strings behave exactly like other strings. The interesting extension that f-strings provide, however, is that we can leave *slots* inside of the f-string to be filled with the result of an expression. The slots are denoted with curly braces (`{}`) and they can be filled with any expression that you want to write. 
+
+```python
+age = 27
+birthday = "August 29"
+print(f"I'm {age}, and after {birthday}, I'll turn {age + 1}.")
+```
+
+If we run this program, we'll see the following message printed:
+
+```
+I'm 27, and after August 29, I'll turn 28.
+```
+
+How do we get that result? Notice that any characters *outside* of the curly brace pairs are printed literally (i.e. `"I'm"`, `", and after "`, `", I'll turn "`, `"."`). The stuff *inside* of the braces is treated as a normal Python expression that is not part of a string. The values of these expressions can be determined based on the variables that have been declared and assigned previously. So, the first slot is filled with the value of the expression `age`, which is `27`. The second is filled with the value of the expression `birthday`, which is `"August 29"`. Finally, the third is filled with `age + 1`, which has the value of `28`. These f-strings can take some getting used to, but they are just about the most concise way to pack a bunch of information into a single line of text. The equivalent way of doing this with commas in the print statement looks like this:
+
+```python
+print("I'm ", age, ", and after ", birthday, ", I'll turn ", age + 1, ".")
+```
+
+It's not so different, but there's a bit of *fussiness* involved in keeping track of all the quote pairs and commas. I recommend that you practice using f-strings.
 
 
 ---
