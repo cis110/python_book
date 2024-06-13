@@ -1,0 +1,9 @@
+[book]
+authors = ["Harry Smith"]
+language = "en"
+multilingual = false
+src = "src"
+title = "CIS 1100 (Python)"
+
+[output.html]
+mathjax-support = true
