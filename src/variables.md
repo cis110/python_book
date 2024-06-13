@@ -103,7 +103,61 @@ It's important to note that the value stored inside of a variable during declara
 #### Reassigning Variables
 As referenced above, it is possible to change the value stored inside of a variable. The syntax for doing so is actually identical to the syntax for declaring a variable, since in Python we declare a variable by assigning a value to it.
 
+```python
+coin = "heads"
+print(coin) # prints heads
+coin = "tails"
+print(coin) # prints tails
+```
 
+Updating a variable lets us do things like keep count of how many times an event has occurred or change a person's personal details in a dataset. A general rule of thumb that you will want to keep in mind, though, is that it's not a good idea to change the *type* of information that a variable stores over time. This makes it hard to keep track of what you can and can't do with a variable throughout your program, and it means that probably the name of the variable no longer describes its contents. 
+
+```python
+my_name = "Harry Smith"
+print("My name is:")
+print(my_name)
+my_name = 27
+print("In three years, I will be:")
+print(my_name + 3)
+```
+
+The above program *runs*, although it is quite confusing. If you were to write this code and then come back to it a few days late, you might find yourself asking: "Why is `my_name` 27? Shouldn't a name be a string?"
+
+### Leap Year, Redux
+
+Let's use what we know about variables to improve our `leap_year.py` program. We want to make it easier to read, and we want to make it so that we can easily adapt it to test different years without having to change the year number in several different places. To refresh your memory, here is where we left off with `leap_year.py`:
+
+```python
+{{#include ../programs/variables/leap_year.py::8}}
+```
+
+In order to calculate whether a year is a leap year, we needed to do three divisibility checks on the year number. This means that any time we want to test whether a different year is a leap year, we have to remember to change three different numbers in the same line. This is a bit tedious, and can be remedied by declaring a variable to store the year that we're testing.
+
+```python
+{{#include ../programs/variables/leap_year.py:12:13}}
+```
+
+Now, if we want to test the year 2023 or 1900 or 200 or 2000, all we need to do is change the value stored inside of the variable `year` and that updated value will be used in the calculation. 
+
+In this case, we are still fitting all three divisibility checks on the same line. In my opinion, this makes the line very hard to read and understand: it's too long, and there are too many different numbers presented without explanation. Instead, we could take each of the divisibility tests and write them as their own individual boolean expressions, saving the result of each in its own variable with a descriptive name:
+
+```python
+{{#include ../programs/variables/leap_year.py:20:22}}
+```
+
+Finally, we can rewrite the full test in terms of the new variables that we've declared:
+
+```python
+{{#include ../programs/variables/leap_year.py:23}}
+```
+
+Thanks to our descriptive variable naming scheme, the full leap year calculation is now written in code in almost exactly the same way we would describe it in plain, natural English. Putting all of this together and adding print statements, we now have the following program:
+
+```python
+{{#include ../programs/variables/leap_year.py:16:24}}
+```
+
+We have spread the program over more lines, but each individual line is now a bit easier to understand. We have generated a program that is *self-commenting*, meaning that it is written in a way that makes the purpose of the code clear without much additional explanation required. This is one of the benefits of Python as a language and it is something that we should strive for in the programs that we write throughout this course.
 
 - Creates a variable
 - Associates a variable to a type
