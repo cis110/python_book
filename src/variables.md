@@ -51,7 +51,7 @@ year = 2024
 
 In this example, we declare a variable called `year`. It contains the `int` value `2024`. The general pattern for variable declaration is `new_variable_name = <expression>` where the left-hand side contains any valid identifier and the right-hand side consists of any expression, the resulting value of which will be stored inside of the variable. 
 
-Between the name and the initial value of the expression, we have a single equals sign (`=`). This is called the assignment operator, and it should be read as a *assertive statement* rather than a question. When you write the following line, you are putting on your royal crown and waving your golden scepter around, *proclaiming, insisting, demanding that the variable called `first_name` shall absolutely, decisively, incontrovertibly henceforth store the value `"Harry"`.* 
+Between the name and the initial value of the expression, we have a single equals sign (`=`). This is called the assignment operator, and it should be read as a *assertive statement* rather than a question. When you write the following line, you are putting on your royal crown and waving your golden scepter around, *proclaiming, insisting, demanding that the variable called `first_name` shall absolutely, decisively, incontrovertibly store the value `"Harry"` until further notice.* 
 
 ```python
 first_name = "Harry"
@@ -63,19 +63,48 @@ I am being dramatic here for emphasis about something that is often confusing. I
 
 In Python, we use `snake_case` to name our variables. Variables should consist only of lowercase letters, underscores (`_`), and digits. Variables should start with a lowercase letter. In order to break up variable names that consist of multiple words, we separate those words with underscores. Variable names should be chosen to be descriptive. There is a tension between being descriptive and being verbose, but editor tools like autocomplete make it easier to stomach longer variable names by preventing you from having to type them out completely. Let's look at a few more variable declarations and observe the style used:
 
-| Declaration           | Comment |
-| --------------------- | ------- |
-| `score = 99.9`        | valid   |
-| `last_name = "Smith"` | valid   |
-| `last_name = "Smith"` | valid   |
+| Declaration                | Comment                                                                 |
+| -------------------------- | ----------------------------------------------------------------------- |
+| `score = 99.9`             | valid                                                                   |
+| `last_name = "Smith"`      | valid                                                                   |
+| `is_mouse_pressed = False` | valid                                                                   |
+| `isMousePressed = False`   | invalid — use `_` to separate words                                     |
+| `avg_pt_ht = 180`          | technically valid, but the use abbreviations make it very hard to read! |
+| `avg_patient_height = 180` | a better compromise for the row above                                   |
+| `color_2 = "red"`          | valid, although ugly to the author's eye 🤷                              |
 
 
 ### Using Variables
 
-Once a variable has been brought into existence by 
+Once a variable has been brought into existence by declaring it, we can use its value inside of other expressions. In this first example, we declare the variable `three`, put the `int 3` inside it, and then immediately print out its value.
+```python
+three = 3
+print(three) # prints out 3
+```
+
+We can use variables as part of other expressions. Here, we calculate the value of \\(1.6^2\\) by multiplying `x` with itself:
+
+```python
+x = 1.6
+print(x * x) # prints out 2.5600000000000005 due to some rounding error.
+```
+
+Indeed, we can even declare variables in terms of other variables!
+
+```python
+a = 10
+b = 20
+c = a + b
+print(c) # prints out 30
+```
+
+It's important to note that the value stored inside of a variable during declaration and assignment is the result of evaluating the right-hand side expression at the moment the assignment is done. That means that on the third line of the previous snippet, we calculate the value of `a + b` based on the values stored inside of `a` and `b`—`10` and `20`—at that time, and then store the result (`30`) inside of `c`. If we later changed the values of `a` or `b`, the value of `c` would **not** be changed as a result. Only an assignment to `c` can change the value of `c`.[^lie]
+
+#### Reassigning Variables
+As referenced above, it is possible to change the value stored inside of a variable. The syntax for doing so is actually identical to the syntax for declaring a variable, since in Python we declare a variable by assigning a value to it.
 
 
-<!--  -->
+
 - Creates a variable
 - Associates a variable to a type
   - The type determines how much space (bits) the computer will use to store the value associated with the variable.
@@ -328,3 +357,5 @@ What is the Java type of the information you added?
 | Is a CIS major?        | True, False        | `boolean` |
 | Height                 | 5.7. 6.0, 4.2      | `double`  |
 
+
+[^lie]: This is only true for some data types in Python. Before long we will see examples where this does not hold when dealing with `list` or `dict` values.

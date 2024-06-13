@@ -34,6 +34,8 @@ It would be very limiting to only have access to integer numbers, and so there i
 
 For the most part, `int` and `float` values can be used interchangeably in Python. Sometimes it's useful for a program to expect an `int` specifically rather than a `float`; for example, we might write a program that allows a user to choose a numbered item from an entree list on a menu. In that case, it would make sense to expect that the user's answer should be an `int` ("I'll have the number 3, please!") instead of a `float` ("Could I please have the number 3.7623, extra spicy?").
 
+Another difference between the two types is that calculations with `int` values will always be precisely correct. Even fairly simple calculations with `float` values can lead to minor amounts of imprecision due to what is effectively rounding error. The amount of error is usually so small as to be irrelevant, especially in the contexts we'll be working with in this course.
+
 #### Arithmetic Operators
 Recall that data types are not just defined by the kinds of information they can represent—they also describe the kinds of operators that we can use on the data that belongs to the type. For numeric types like `int` and `float`, the important operators are all mathematical. Take a look at the table below to see four commonly used operators (`+`, `-`, `*`, `/`) on the `int` data type. Most of them will be familiar to you already!
 
