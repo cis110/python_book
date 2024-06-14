@@ -134,7 +134,7 @@ print("Calculating number of slices remaining...")
 print((13 * 8) % 15)
 ```
 
-We have four slices left over, it seems. We can check our work to verify that this makes sense: `13 * 8` is `104`. `15` goes into `104` `6` times, and `15 * 6` equals `90`. After all `15` people get their `6` slices each, there will be `104 - 90`, or `14` slices remaining. 
+We have fourteen slices left over, it seems. We can check our work to verify that this makes sense: `13 * 8` is `104`. `15` goes into `104` `6` times, and `15 * 6` equals `90`. After all `15` people get their `6` slices each, there will be `104 - 90`, or `14` slices remaining. 
 
 ### Booleans
 
@@ -265,6 +265,12 @@ The second important thing to note about the expression `"CIS" + "1100"` is that
 print("CIS" + 1100)
 ```
 
+This means that if you do `"1" + "1"`, you won't get 2, because both 1's are strings:
+
+```python
+print("1" + "1") # prints 11
+```
+
 Our second `str` operation will be string repetition using the `*` operator. In this case, we can provide a `str` value on the left hand side of the operator and an `int` value on the right hand side of the operator. This number on the right tells us how many times to repeat the text on the left. For example, we could write some lines of code that let your friends know how funny they are:
 
 ```python
@@ -335,7 +341,7 @@ The inclusion of the `None` type in Python means that sometimes we need to ask t
 
 #### Ordering (`<`, `<=`, `>`, `>=`)
 
-Sometimes, we may be interested in determining how two values compare to each other: is this less than that? is this number greater than or equal to this other one? These next four operators (`<`, `<=`, `>`, `>=`) allow us to do these comparisons in Python. Like the equality operators, these operators both produce `bool` values as the output type; however, the comparison operators must take in two values of the same type. Values should be both numeric [`int` or `float`], both `str`, or both `bool` on the left and the right hand side. The next table has some examples.
+Sometimes, we may be interested in determining how two values compare to each other: is this less than that? is this number greater than or equal to this other one? These next four operators (`<`, `<=`, `>`, `>=`) allow us to do these comparisons in Python. Like the equality operators, these operators both produce `bool` values as the output type; however, the comparison operators must take in two values of the same type. Values should be both numeric [`int` or `float`], both `str`, or both `bool` on the left and the right hand side. When you compare two strings with these operators, they are compared lexographically. The next table has some examples.
 
 | Expression            | Result                   |
 | --------------------- | ------------------------ |
