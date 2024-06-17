@@ -27,7 +27,7 @@ When I wrote above that the program will "print out a message," you may have not
 Printing in Python is accomplished using the `print()` function. *Functions* are named pieces of code that can be invoked by writing their names. We will return in much greater detail to this topic later in the course. `print()` allows you to *pass in* (or specify) a piece of information that should be printed. 
 
 ### Text and `strings`
-When we want to print a message, we surround the text of the message in quotes. This clarifies to Python that the stuff inside of the quotes should be treated as a sequence of characters called a `string`. The contents of the `string` will be interpreted literally rather than as other pieces of a program. In this case, Python recognizes `"Hello, world!"` as a message to display; without, Python's interpreter will assume that `Hello, world!` is some kind of instruction. Since this inadvertant instruction is nonsensical, the program will crash with an error! We can see an example of this below.
+When we want to print a message, we surround the text of the message in quotes. This clarifies to Python that the stuff inside of the quotes should be treated as a sequence of characters called a `string`. The contents of the `string` will be interpreted literally rather than as other pieces of a program. In this case, Python recognizes `"Hello, world!"` as a message to display; without the double quotes character (`"`) at the start and end, Python's interpreter will assume that `Hello, world!` is some kind of instruction. Since this inadvertant instruction is nonsensical, the program will crash with an error! We can see an example of this below.
 
 Filename: `hello_world_quoteless.py`
 ```python
