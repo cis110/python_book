@@ -34,7 +34,7 @@ A **variable** is a **named portion of computer memory used to store a data valu
 
 Variables, as the name suggests, are allowed to *vary* overtime. Their contents can be written and overwritten as many times as we like. To continue the analogy, we're allowed to replace the contents of our boxes with something new whenever we need: we simply find the box by name, remove its previous contents, and add something new instead.
 
-Variables allow us to have the computer "remember" data between different lines of our program. We can do our computation in stages now, writing an expression to calcluate an intermediate result and then saving that result inside of a variable for later use. 
+Variables allow us to have the computer "remember" data between different lines of our program. We can do our computation in stages now, writing an expression to calculate an intermediate result and then saving that result inside of a variable for later use. 
 
 To summarize:
 - Variables are portions of computer memory that always store a data value.
