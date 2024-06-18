@@ -45,6 +45,42 @@ SyntaxError: invalid syntax
 
 We'll take a more detailed look at error messages later on.
 
-## All This Explanation for One Line of Code?
+## All This Explanation for One Short Program?
 
 We wrote our first program using just one line of code, and yet we had a lot to break down and discuss. Programming languages are remarkably dense with meaning and computers are very uncharitable in how they try to read your programs: diverge from the expected syntax by even one character and your program will crash! When you learn to program, there are two significant challenges you face: becoming familiar with the rules and constraints of a programming language, and thinking with abstractions. Be patient, and pay careful attention to each line of code that you write so that you start to get familiar with the requirements of Python! You will make mistakes, but the course staff is here to help you get unstuck.
+
+## Comments
+
+Here is a modification of our `hello_world.py` program:
+
+```python
+# displays a greeting message
+print("Hello, world!")
+```
+
+If you make this modification and run it for yourself, you'll observe that the output of the program is...
+
+```console
+$ python hello_world.py
+Hello, world!
+```
+
+...exactly the same as it was before! That's because the stuff we added above is an example of a **comment.** A comment is a portion of a program denoted with the `#` character that is ignored by the computer when the program is run. Comments are exclusively for human usage and they do not affect how the program behaves. Common uses for comments include:
+- Writing a "header" for your program that marks who the author is, how the program is intended to be used, and a listing of all of the features it contains.
+- Explaining the purpose of an individual piece of code for another programmer or for yourself in the future.
+- Marking a portion of code as "TODO", i.e. to be fixed or finished at a later time.
+- Taking notes about things that aren't working or questions you have so that you can get help on them from the course staff in the future.
+
+Any text following a `#` character on a line (and the `#` character itself) are ignored by the program. Comments can be left above the code they are referencing or at the end of the lines they are explaining. You will be required to use comments throughout this course.
+
+```python
+# Name: Harry Smith
+# Pennkey: sharry
+# Execution: python hello_world.py
+# This is a program that prints a simple greeting message.
+
+# This next line of code does the printing.
+print("Hello, world.") # This is a print statement.
+```
+
+This example above is vastly "overcommented"—you will never need to write so many comments that they outnumber the lines of code in your program—but it shows an example of a program header (the block of comments at the top of the program), a comment placed before a line of code, and a comment placed at the end of a line of code. 

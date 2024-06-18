@@ -6,6 +6,16 @@ We will start in this section by discussing concepts that are generally importan
 
 You can access a full listing of PennDraw’s features on the [PennDraw Documentation](#) (LINK TKTKTK) page of the course website. This will be important for completing HW00. For now, we’ll step through some basic principles of drawing through programming.
 
+## Importing PennDraw
+
+PennDraw is a **library** of programs that are written in Python but does not come pre-installed with Python. PennDraw can be used in Python programs, but since PennDraw and Python are two separate pieces of software, we need to take manually identify PennDraw as a library we want to use. We do this by **importing** PennDraw. Import statements, marked by the `import` keyword, signal to Python that we will be using code from an outside library in our program. In order to import PennDraw, all we need is the following line:
+
+```python
+import penndraw as pd
+```
+
+In this case, the name of the library is `penndraw`—all one word, all in lowercase letters. Since we're going to be using code from this library very frequently, it will be helpful to give the name an abbreviation.  We specify the abbreviation `pd` by writing `as pd`. This is very common practice in Python programs: popular libraries like `numpy` or `pandas` are often abbreviated to `np` and `pd`, respectively.[^abbrev] Altogether, with this one line of code, we tell Python to make the `penndraw` library available to us under the name `pd` when we want to use it.
+
 ## The Canvas & Coordinate Systems
 
 ### The Canvas
@@ -248,6 +258,9 @@ The final step is to draw a doorknob. We use `pd.point(0.54, 0.44)` to draw a sm
 > Our end result:
 >
 > ![alt text](img/penndraw/my_house.png)
+
+
+[^abbrev]:The lines of code that accomplish these two imports are: `import numpy as np` and `import pandas as pd`
 
 [^ought]:Also the name of one of [my favorite songs](https://www.youtube.com/watch?v=L-KdrAVh52I).
 
