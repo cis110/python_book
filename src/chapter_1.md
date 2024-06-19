@@ -84,3 +84,31 @@ print("Hello, world.") # This is a print statement.
 ```
 
 This example above is vastly "overcommented"—you will never need to write so many comments that they outnumber the lines of code in your program—but it shows an example of a program header (the block of comments at the top of the program), a comment placed before a line of code, and a comment placed at the end of a line of code. 
+
+## Order of Execution
+
+The order in which the statements inside of a Python program are executed is referred to as the **control flow**. Although we will eventually be able to manipulate control flow in some fairly complex ways, our first programs in Python will always exhibit the default control flow. Lines of code in your program will be executed one at a time from top to bottom. We could write a new program inside of the file `hello_everybody.py` that looks like this:
+
+```python
+{{#include ../programs/hello_world/hello_everybody.py}}
+```
+
+Each line of the program is a single print statement that will display a message on its own line of the output. If we run the program, we'll see the messages printed in the following order:
+
+```console
+I'd like to say hello to my friends.
+I'd like to say hello to my family.
+I'd like to say hello to my fans.
+I'd like to say hello to you.
+```
+
+The first line of code in the program is executed first, and so `I'd like to say hello to my friends.` appears on the first line of the printed output. The second line is executed next, and so `I'd like to say hello to my family.` appears on the second line of the printed output. This pattern continues; to reiterate, Python programs are executed from top to bottom, one line at a time, starting at the top of the file.
+
+As an exercise, can you rearrange the lines of the program `hello_everybody.py` so that the messages are printed in the following order instead? This is good practice not just for understanding control flow but also for making sure that you can modify a program and run it after you've made your changes.
+
+```console
+I'd like to say hello to my family.
+I'd like to say hello to you.
+I'd like to say hello to my fans.
+I'd like to say hello to my friends.
+```

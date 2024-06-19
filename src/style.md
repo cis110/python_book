@@ -16,7 +16,7 @@ pd.set_pen_color( pd.HSS_ORANGE )
 pd.filled_circle(  0.5, .5, 0.1)
 ```
 
-This is a functioning program, but... well, it's ugly! We have a bunch of unnecessary whitespace throughout the program: extra space between `as` and `pd` within the first line and several unnecessary lines between the calls to `filled_rectangle()` and `set_pen_color()`. Sometimes we have spaces before and after our parentheses characters but sometimes we do not. Sometimes we have spaces after commas and sometimes we do not. Sometimes we write our number values with a leading `0` and sometimes we do not. 
+This is a functioning program, but... well, it's ugly! We have a bunch of unnecessary whitespace throughout the program: extra space between `as` and `pd` within the first line and several unnecessary lines between the calls to `filled_rectangle()` and `set_pen_color()`. Sometimes we have spaces before and after our parenthesis characters but sometimes we do not. Sometimes we have spaces after commas and sometimes we do not. Sometimes we write our number values with a leading `0` and sometimes we do not. 
 
 It's hard enough at the outset of your programming journey to create programs that run at all, so we want to avoid as much unpredictability in the presentation as possible. Observe the following code, which takes the program from above, rewrites it with consistent spacing and formatting, and adds some comments.
 

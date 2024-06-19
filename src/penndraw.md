@@ -135,6 +135,12 @@ What happens if we draw *the blue circle first, then the white circle, then the 
 
 Bullseye! 😉
 
+## Running & Viewing PennDraw Programs
+
+Programs using PennDraw are written in much the same way that any other Python programs would be written. There is a small difference in how we view the output of PennDraw programs compared to our first `hello_world.py` and `hello_everybody.py` programs, though. Since PennDraw draws shapes to the screen, we can't just look at the terminal to see our outputs the way that we have when observing the outputs of print statements. Instead, you will need to find the "View Running Program" button along the top menu bar in Codio and click it in order to view the drawing that your program created. In the image below, you can find that button at the top right corner.
+
+![View Running Program](img/penndraw/vrp.png)
+
 ## `my_house.py`
 
 For your first homework assignment, you’ll use PennDraw to create a drawing of your own. Before we get there, though, we’re going to take a guided tour through an example PennDraw illustration: `my_house.py`. 
