@@ -5,3 +5,4 @@
 - [Code Style](./style.md)
 - [Data Types](./datatypes.md)
 - [Variables](./variables.md)
+- [Conditionals](./conditionals.md)
