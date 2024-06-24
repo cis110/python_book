@@ -177,6 +177,69 @@ Printing a message if 10 is divisible by 5...
 ```
 
 Only one line is printed! The condition is not met—`num % 5 == 0` evaluates to `False` this time—and so we skip all statements in the indented block. Remember: with an individual `if`, you are *choosing whether or not to do something*.
+
+The indented blocks that you find underneath each of the `if` statements define the lines of code that will only be executed when the specified condition is met. Once we leave an indented block that makes up the body of an `if` statement, we return to executing statements without consideration for the truth value of the condition. 
+
+```python
+print("I like to eat apples.")
+if 5 // 2 == 2.5: # remember, // means integer division!
+	print("I like to eat bananas.")
+print("I like to eat cherries.")
+```
+
+Inspecting the example above, we see three print statements in total. Two are totally *unconditioned*, meaning that they are not part of the body of any conditional statements. We will reach the first print statement and print the message about apples. Then, we reach our `if` statement. Recall that integer division `//` always produces an `int` value with any fractional result of the quotient truncated away, and so `5 // 2` evaluates to `2`, not `2.5`. The conditional's boolean expression evaluates to `False`, and so the print statement inside that `if` statement is skipped. We can see that line 4 is not a part of the indented block, and so it is the first line of code that will be run after skipping the previous conditional. The output is thus:
+
+```console
+I like to eat apples.
+I like to eat cherries.
+```
+
+It's possible to include multiple `if` statements in the same program, and when we do, we consider each of their conditions independently. Recall our definition of a strong password from before: passwords are strong if they are at least eight characters long and they are distinct from the user's username. We wrote one single boolean expression to define this condition in the first case, but suppose we wanted to write a program that could give us some feedback about *why* a password isn't any good. We might write the following:
+
+```python
+username = "inspector_norse"
+password = "0451"
+if len(password) < 8:
+	print("Bad Password: Not long enough!")
+if password == username:
+	print("Bad Password: Same as username!")
+```
+
+Running this program gives the following output:
+
+```console
+Bad Password: Not long enough!
+```
+
+Only one of the messages is printed. After defining our two variables, we reach our first conditional on line 3 and test the relevant condition and find that the password has a length less than eight characters. Entering the body of that conditional, we print the appropriate warning, and then we reach the end of the indented block of statements. That means that we proceed to the next statement *unconditionally* and process it. That next statement is the next conditional found on line 5. We test its condition and find that the `password` and `username` are different and so we skip the indented block of statements that make up the body of the `if` statement. This brings us to the end of the program, and there's nothing else to do.
+
+As an exercise, you should try to change the value of `password` to another string so that the program exhibits both of the following behaviors. 
+- The program prints out only the message `"Bad Password: Same as username!"` when run.
+- The program prints out no messages at all when run.
+
+Finally, can you explain why it is not possible to change only the value of `password` and have the program print out both warning messages? What would you need to change about the program to make it possible to do so?
+
+#### Nesting `if`s
+
+Although they look slightly different than print statements or variable declarations, conditionals are just statements like any other. This means that they can be part of the bodies of other conditionals, since these indented blocks just comprise more statements. Consider the following program, `days_in_month.py`:
+
+```python
+month = 8 # change this value & see what gets printed
+if month <= 7:
+	if month % 2 == 1:
+		print(f"Month {month} has 31 days.")
+	if month % 2 == 0 and month != 2:
+		print(f"Month {month} has 30 days.")
+	if month == 2:
+		print(f"Month {month} has 28 days.")
+if month > 7:
+	if month % 2 == 1:
+		print(f"Month {month} has 30 days.")
+	if month % 2 == 0:
+		print(f"Month {month} has 31 days.")
+```
+
+At our top level, we have a variable declaration followed by our first conditional which tests if the provided `month` is at most seven. If it is, then it is the odd numbered months that have 31 days and the even numbered months that have 30 days—except for month 2, February, which has 28 days [most of the time.](datatypes.md#example-leap-years). These three conditions are tested if and only if `month <= 7` happens to be `True`, and you can observe that dependency by noting that each of the following three `if` statements are indented one level to the right of that initial conditional. The corresponding print statements are indented one level further under each of the corresponding `if` statements, indicating that each message will be printed only in the case that the parity and value conditions are met. After the third nested `if` statement and its body, we return back all the way to the left with our next conditional, testing whether `month > 7`. If it's a month after July, then it's the odd months that have 30 days, and the two nested conditionals match these conditions to the appropriate outputs. 
 ---
 
 # Code Blocks
