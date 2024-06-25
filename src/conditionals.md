@@ -240,6 +240,134 @@ if month > 7:
 ```
 
 At our top level, we have a variable declaration followed by our first conditional which tests if the provided `month` is at most seven. If it is, then it is the odd numbered months that have 31 days and the even numbered months that have 30 days—except for month 2, February, which has 28 days [most of the time.](datatypes.md#example-leap-years). These three conditions are tested if and only if `month <= 7` happens to be `True`, and you can observe that dependency by noting that each of the following three `if` statements are indented one level to the right of that initial conditional. The corresponding print statements are indented one level further under each of the corresponding `if` statements, indicating that each message will be printed only in the case that the parity and value conditions are met. After the third nested `if` statement and its body, we return back all the way to the left with our next conditional, testing whether `month > 7`. If it's a month after July, then it's the odd months that have 30 days, and the two nested conditionals match these conditions to the appropriate outputs. 
+
+### The `elif` Statement
+
+The `if` statement allows us to make a simple binary choice: to do, or not to do? Moreover, each `if` that we place in our program is considered independently so that we might execute any number of the statements based on the truth values of their conditions. Sometimes, we might want a succinct way of choosing one option among a number of different options. The `elif`—"el if" or "else if" when read aloud—keyword allows us to do that. The syntax of an `elif` statement is functionally identical to that of an `if` statement, but it cannot be used without a preceeding `if` statement to accompany it. Here's a general example of how an `elif` statement looks accompanying an `if` statement. 
+
+```python
+if first_boolean_expression:
+	statement_one
+	statement_two
+	...
+	statement_last
+elif alternative_boolean_expression:
+	statement_a
+	statement_b
+	...
+	statement_z
+```
+
+The purpose of the `elif` statement is to specify a block of code that can only be run if no previous condition in the chain has been met. In this way, we say that `if` and `elif` statements represent *mutually exclusive* choices: we may execute the body of one, the other, or neither, but *never both*.
+
+Perhaps we want to write a program to make a decision for today's activities based on the day's temperature.
+
+```python
+temperature = 90
+if temperature > 85:
+	print("Go to the beach. 🏖️")
+elif temperature > 55:
+	print("Go hiking. 🥾")
+```
+
+When we have `temperature = 90` as the first line of this program, the output looks like the following:
+
+```console
+Go to the beach. 🏖️
+```
+
+Notice that although both boolean expressions written in the program (`temperature > 85` and `temperature > 55`) would evaluate to `True`, only one body of statements was triggered by the conditional structure. This is due to the mutually exclusive properties of `if` and `elif`: when the first condition was met, we executed the statements in the body of the `if` statement and then skipped the `elif` statement entirely.
+
+If the weather had been a bit more reasonable and we had `temperature = 64` as the first line of our program instead, the printed output would have been the following:
+
+```console
+Go hiking. 🥾
+```
+
+In this case, since the first condition was not met, we were able to test the second one that belongs to the `elif` statement. This condition is indeed met, and so we execute the statements in the body of the `elif` statement.
+
+It is also possible to have both boolean expressions evaluate to `False`, in which case the program would print out nothing. Try changing `temperature` to store a colder value and verify this for yourself. 
+
+A nice feature of `elif` statements is that they can be chained together one after the other to create a series of mutually exclusive conditions that will be tested in order from top to bottom. We might write a program to assign letter grades based on point values for an exam, for example:
+
+```python
+exam_score = 94
+letter_grade = "F"
+if exam_score > 90:
+	letter_grade = "A"
+elif exam_score > 80:
+	letter_grade = "B"
+elif exam_score > 70:
+	letter_grade = "C"
+elif exam_score > 60:
+	letter_grade = "D"
+print(f"Your exam score of {exam_score} earns: {letter_grade}.")
+```
+
+In this program, we find an `if` statement followed by four different `elif` statements. Notice that each of these defines a new boolean expression that will only be tested if all of the previous conditions in this chain evaluated to `False`. The program as listed with `exam_score = 94` will cause the very first expression to be `True`, and so `letter_grade` will be set to `"A"`. Since that first expression was `True` and all other expressions correspond to `elif` statements, all other conditions in that conditional chain are skipped. When we run the program as written, we get the following output:
+
+```console
+Your exam score of 94 earns: A.
+```
+The use of `elif`s here is very important to making sure the program behaves correctly. Consider what would have happened if we had used a series of `if` statements instead of an `if`-`elif` chain:
+
+```python
+exam_score = 94
+letter_grade = "F"
+if exam_score > 90:
+	letter_grade = "A"
+if exam_score > 80:
+	letter_grade = "B"
+if exam_score > 70:
+	letter_grade = "C"
+if exam_score > 60:
+	letter_grade = "D"
+print(f"Your exam score of {exam_score} earns: {letter_grade}.")
+```
+
+The printed output is:
+
+```console
+Your exam score of 94 earns: D.
+```
+
+When we test the first expression on line 3, it evaluates to `True` and so we set `letter_grade = "A"`. But then, since it's not guarded by an `elif`, we also test the expression on line 5 and find it to also be `True`! This causes the program to set `letter_grade = "B"`. The problem is repeated on line 7 and line 9, and so finally we set `letter_grade = "D"` and then get the incorrect output printed. If we had wanted to write this program correctly using only `if` statements and no `elif` statements, then we would need to be more specific about our conditions. The `elif` statements allow us to assume that by getting to line 5, for example, that we already know that `exam_score > 90` is `False`, since if it were `True`, we would skip this test. The condition on line 5 is therefore implicitly testing whether `exam_score` is both *at most 90 and greater than 80.* The version of this program using only `if` statements that is equivalent to the original `elif` version looks like the following:
+
+```python
+exam_score = 94
+letter_grade = "F"
+if exam_score > 90:
+	letter_grade = "A"
+if 90 >= exam_score > 80:
+	letter_grade = "B"
+if 80 >= exam_score > 70:
+	letter_grade = "C"
+if 70 >= exam_score > 60:
+	letter_grade = "D"
+print(f"Your exam score of {exam_score} earns: {letter_grade}.")
+```
+
+#### The Resetting Power of `if`
+
+Each time we write an `if` statement, we are breaking the previous conditional chain. Every `elif` statement provides an option that will only be tested when all previous corresponding `if`-`elif` conditions were not met *up until the most recent previous `if` statement.* 
+
+```python
+if account_balance < item_price:
+	print("Insufficient funds to complete transaction. Transaction cancelled.")
+elif account_balance > item_price:
+	print(f"Completing transaction; dispensing change amount of {account_balance - item_price}")
+elif account_balance == item_price:
+	print("Completing transaction. Have a nice day.")
+
+if item_price > 10.00:
+	print("Printing $2.50 coupon for your next visit.")
+elif item_price > 5.00:
+	print("Printing $1.00 coupon for your next visit.")
+```
+
+In the example above, we  compare the `account_balance` to the `item_price` and choose one of the options—reject the transaction due to insufficient funds, complete the transaction and dispense change, or complete the transaction without dispensing change.[^min_one] Then, separately, we check if the `item_price` was either greater than $10.00 or between $10.00 and $5.00 in order to dispense a coupon for the customer's next visit. We will only dispense one of those coupons at most, and the decisions for dispensing a coupon are totally independent of the decisions made for whether or not to complete the transaction.
+
+[^min_one]: Even though it is generally possible to reach the end of a conditional chain comprised of `if` and `elif` statements without having any of the conditions along the way being met, in this case we will always trigger one of them. Can you see why? 
 ---
 
 # Code Blocks
