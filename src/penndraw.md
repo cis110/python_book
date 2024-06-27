@@ -213,7 +213,7 @@ Using this tool, try to select each of the following colors in the color picker 
 - Teal/Cyan
 - Magenta/Purple
 
-Specifying colors by RGB triplets gives us fine-grained control over the colors that appear on the screen. For this drawing, I set a new color before I draw each line:
+You will pick up an intuition for the relationship between an RGB triple and its corresponding color over time. Specifying colors by RGB triples gives us fine-grained control over the colors that appear on the screen. We can make pleasing gradients by blending colors smoothly into others. For this drawing, I approximate a gradient by setting a new color, just slightly different in terms of RGB values than the previous color, before I draw each line:
 
 ![a gradient of lines, each with different rgb values](img/penndraw/gradient.png)
 
