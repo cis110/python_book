@@ -247,7 +247,7 @@ To make sure the border is actually visible, we need to draw it in a different c
 
 The parameters in both cases are identical to the parameters we just gave to `pd.filled_polygon()` and `pd.filled_rectangle()` that we used to draw our house. Since we want to draw a border around those same shapes, we use the non-filled versions of those PennDraw functions to draw outlines of the exact same shapes.
 
-> Observe how `polygon()` and `rectangle()` can be used with `filled_polygon()` and `filled_rectangle()` to draw borders around shapes.
+> Observe how `polygon()` and `rectangle()` can be used after `filled_polygon()` and `filled_rectangle()` to draw borders around shapes.
 >
 > ![alt text](img/penndraw/bordered_house.png)
 
