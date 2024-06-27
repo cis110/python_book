@@ -107,12 +107,121 @@ There are a bunch of named colors that you can use:
 
 #### Colors by RGB Value
 
-You're not limited to using the twenty colors to which we've given names! A color can also be specified by how much red, green, and blue is present in it. To specify a color in this way, we use three integer numbers (whole numbers) each between 0 and 255 written like `(red, green, blue)`. For example, if we want a pure red color that looks like this, we would choose our red value to be `255` (as big as possible) and choose green and blue to both be `0`.
+You're not limited to using the twenty colors to which we've given names! A color can also be specified by how much red, green, and blue is present in it. To specify a color in this way, we use three integer numbers (whole numbers) each between `0` and `255` written like `(red, green, blue)`. For example, if we want a pure red color that looks like this, we would choose our red value to be `255` (as big as possible) and choose green and blue to both be `0`.
 To create <span style="background-color: rgb(138, 73, 107)">this charming "twilight lavender" color,</span> we use the RGB triple `(138, 73, 107)`. Interpreting this triple, we see that "twilight lavender" comes from a blend of a lot of red at `138`, along with a slightly smaller amount of blue at `107` and even less green at `73`.
 
-Specifying colors by RGB triplets gives us fine-grained control over the colors that appear on the screen. For this drawing, I set a new color before I draw each line:
+You can experiment with RGB values by clicking on the box labeled "Color" below. This is an example of a simple *color picker*, and you are encouraged to use it whenever you need to figure out a color's RGB code for a drawing. (You can also use [a more complex one](https://www.w3schools.com/colors/colors_picker.asp) if you prefer.) As you select a new color, the red, green, and blue values update and the box also changes color.
+
+<style>
+  .container {
+      display: flex;
+      /* height: 100px; Full height of the viewport */
+  }
+  .column {
+      flex: 1;
+      border: 1px solid #000; /* Just for visual separation */
+  }
+  .column:nth-child(1) {
+      flex: 1; /* The widest column */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  .column:nth-child(2) {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between; /* Space out the nested divs evenly */
+      align-items: center;  
+  }
+  .column:nth-child(2) .nested {
+      flex: 1;
+  }
+  .column:nth-child(3) {
+      background-color: #cccccc;
+  }
+</style>
+
+<div class="container">
+    <div class="column">
+        <label for="color-picker">Color: </label>
+        <input type="color" value="#cccccc" id="color-picker" />
+    </div>
+    <div class="column">
+        <div class="nested">
+            <p id="redValue">Red Value: 204</p>
+        </div>
+        <div class="nested">
+            <p id="greenValue">Green Value: 204</p>
+        </div>
+        <div class="nested">
+            <p id="blueValue">Blue Value: 204</p>
+        </div>
+    </div>
+    <div class="column" id="change-me">
+        <!-- Empty div with red background -->
+    </div>
+</div>
+
+<script>
+  function getRedFromHex(hexColor) {
+    // Extract the red value from the hex color (characters 1 and 2, after the #)
+    const redHex = hexColor.slice(1, 3);
+    // Convert the hex string to an integer
+    return parseInt(redHex, 16);
+  }
+  function getGreenFromHex(hexColor) {
+    // Extract the red value from the hex color (characters 1 and 2, after the #)
+    const greenHex = hexColor.slice(3, 5);
+    // Convert the hex string to an integer
+    return parseInt(greenHex, 16);
+  }
+  function getBlueFromHex(hexColor) {
+    // Extract the red value from the hex color (characters 1 and 2, after the #)
+    const blueHex = hexColor.slice(5, 7);
+    // Convert the hex string to an integer
+    return parseInt(blueHex, 16);
+  }
+  window.addEventListener("load", function () {
+    let colorPicker =  document.querySelector("#color-picker");
+    colorPicker.value = "#cccccc";
+
+    colorPicker.addEventListener("input", watchColorPicker, false);
+    function watchColorPicker(event) {
+      const hexColor = event.target.value;
+      const redValue = getRedFromHex(hexColor);
+      const greenValue = getGreenFromHex(hexColor);
+      const blueValue = getBlueFromHex(hexColor);
+      document.getElementById('redValue').textContent = `Red Value: ${redValue}`;
+      document.getElementById('greenValue').textContent = `Green Value: ${greenValue}`;
+      document.getElementById('blueValue').textContent = `Blue Value: ${blueValue}`;
+      document.querySelectorAll("#change-me").forEach((div) => {
+        div.style.backgroundColor = hexColor;
+      });
+    }
+  }, false);
+  
+</script>
+
+Using this tool, try to select each of the following colors in the color picker tool. In each case, observe the relative values of red, green, and blue.
+- Black
+- White
+- Light Grey
+- Dark Grey
+- Dark Green
+- Pink
+- Yellow
+- Teal/Cyan
+- Magenta/Purple
+
+You will pick up an intuition for the relationship between an RGB triple and its corresponding color over time. Specifying colors by RGB triples gives us fine-grained control over the colors that appear on the screen. We can make pleasing gradients by blending colors smoothly into others. For this drawing, I approximate a gradient by setting a new color, just slightly different in terms of RGB values than the previous color, before I draw each line:
 
 ![a gradient of lines, each with different rgb values](img/penndraw/gradient.png)
+
+
+
+
+
+
 
 ## Drawing Order
 Just by learning about the rules of PennDraw, you probably have some idea of what drawings it’s capable of making. For example, it’s not surprising to think that we could draw a small red circle, a medium white circle, and a large blue circle all on a black background:
