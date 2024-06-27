@@ -92,7 +92,7 @@ And `pd.MAGENTA` looks like this:
 
 There are a bunch of named colors that you can use:
 
-| Color           | Example                                                                                                                        | Color          | Example                                                                                                                        |
+| PennDraw Name   | Color Sample                                                                                                                   | PennDraw Name  | Color Sample                                                                                                                   |
 | --------------- | ------------------------------------------------------------------------------------------------------------------------------ | -------------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | `pd.BLACK`      | <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" fill="rgb(0, 0, 0)" /></svg>       | `pd.WHITE`     | <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" fill="rgb(255, 255, 255)" /></svg> |
 | `pd.RED`        | <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" fill="rgb(255, 0, 0)" /></svg>     | `pd.GREEN`     | <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="50" fill="rgb(0, 255, 0)" /></svg>     |
