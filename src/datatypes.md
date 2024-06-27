@@ -357,6 +357,18 @@ Sometimes, we may be interested in determining how two values compare to each ot
 | `4 > "howdy"`         | 🚨Error! Type mismatch. 🚨 |
 | `True <= None`        | 🚨Error! Type mismatch. 🚨 |
 
+Python also allows us to chain these ordering operators together. This is a convenient and succinct way of determining whether or not a value fits within a certain range. For example, `0 < 10 < 20` evaluates to `True` because `0` is less than `10` and `10` is less than `20`. We can also chain `str` values in the same way, and so `"zebra" > "panda" > "elephant"` is another `True` statement since `"panda"` comes lexicographically before `"zebra"` but after `"elephant"`. When we write one of these expressions, Python evaluates them as a series of individual binary comparisons strung together with `and` operators. We could write `10 >= 0 > -10` as `10 >= 0 and 0 > -10`, which is in fact how we would have to express this in many other programming languages. We can get a bit creative with the ordering of these chained operators, although it can be a bit confusing to break down and understand. The following boolean expressions all have equivalent values:
+
+| Expression          |
+| ------------------- |
+| `5 < 10 > 8`        |
+| `5 < 10 and 10 > 8` |
+| `True and 10 > 8`   |
+| `True and True`     |
+| `True`              |
+
+
+
 
 ## Example: Leap Years
 

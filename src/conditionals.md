@@ -347,27 +347,105 @@ if 70 >= exam_score > 60:
 print(f"Your exam score of {exam_score} earns: {letter_grade}.")
 ```
 
-#### The Resetting Power of `if`
+#### Writing Multiple Conditional Chains
 
 Each time we write an `if` statement, we are breaking the previous conditional chain. Every `elif` statement provides an option that will only be tested when all previous corresponding `if`-`elif` conditions were not met *up until the most recent previous `if` statement.* 
 
 ```python
+transaction_completed = False
 if account_balance < item_price:
 	print("Insufficient funds to complete transaction. Transaction cancelled.")
 elif account_balance > item_price:
+	transaction_completed = True
 	print(f"Completing transaction; dispensing change amount of {account_balance - item_price}")
 elif account_balance == item_price:
+	transaction_completed = True
 	print("Completing transaction. Have a nice day.")
 
-if item_price > 10.00:
+if transaction_completed and item_price > 10.00:
 	print("Printing $2.50 coupon for your next visit.")
-elif item_price > 5.00:
+elif transaction_completed and item_price > 5.00:
 	print("Printing $1.00 coupon for your next visit.")
 ```
 
-In the example above, we  compare the `account_balance` to the `item_price` and choose one of the options—reject the transaction due to insufficient funds, complete the transaction and dispense change, or complete the transaction without dispensing change.[^min_one] Then, separately, we check if the `item_price` was either greater than $10.00 or between $10.00 and $5.00 in order to dispense a coupon for the customer's next visit. We will only dispense one of those coupons at most, and the decisions for dispensing a coupon are totally independent of the decisions made for whether or not to complete the transaction.
+In the example above, we  compare the `account_balance` to the `item_price` and choose one of the options—reject the transaction due to insufficient funds, complete the transaction and dispense change, or complete the transaction without dispensing change.[^min_one] In both of the latter two cases, we also set `transaction_completed = True` to model that the item was indeed sold. Then, separately, we check if the transaction was completed and if `item_price` was either greater than $10.00 or between $10.00 and $5.00 in order to dispense a coupon for the customer's next visit. We will only dispense one of those coupons at most, and in the case that `transaction_completed` stores the value `False`, then we won't dispense any of the coupons.
 
 [^min_one]: Even though it is generally possible to reach the end of a conditional chain comprised of `if` and `elif` statements without having any of the conditions along the way being met, in this case we will always trigger one of them. Can you see why? 
+
+### The `else` Statement
+
+Let's circle back for a moment to our earlier activity planning example:
+
+```python
+temperature = 90
+if temperature > 85:
+	print("Go to the beach. 🏖️")
+elif temperature > 55:
+	print("Go hiking. 🥾")
+```
+
+In this case, we have two conditions that might be met, but it is possible to modify the value of `temperature` so that neither of the boolean expressions written evaluate to `True`. We could have provided a default "stay inside and read" outcome by specifying a condition for temperatures that are too cool for a pleasant outdoor activity using `elif` statements:
+
+```python
+temperature = 30
+if temperature > 85:
+	print("Go to the beach. 🏖️")
+elif temperature > 55:
+	print("Go hiking. 🥾")
+elif temperature <= 55:
+	print("Read a book. 📖")
+```
+
+Now, our conditional structure covers all possible `int` values: the temperature will be above 85, or above 55 but not above 85, or it will be 55 or below. Unfortunately, it takes a bit of reasoning to prove that this conditional will have one of its branches triggered. It is often convenient to specify a default outcome for a conditional without having to come up with a boolean expression of your own that captures all other possible outcomes excluded by the other branches. Python allows us to do this with the last component of a conditional statement: the `else` clause. 
+
+The `else` keyword allows us to define a body of statements that will be run only in the case that all previous conditions were not met. There is a small syntactical difference in writing `else` statements compared to `if` and `elif`: they are not written with a new boolean expression to accompany them. The condition to execute the statements belonging to an `else` is exactly that *all previous expressions in the conditional evaluated to `False`.* Inspect the syntax for a full Python conditional chain below:
+
+```python
+if first_boolean_expression:
+	statement_one
+	statement_two
+	...
+	statement_last
+elif alternative_boolean_expression:
+	statement_a
+	statement_b
+	...
+	statement_z
+# optionally many elif statements provided here
+else:
+	default_statement_one
+	default_statement_two
+	...
+	default_statement_last
+```
+
+Finishing a conditional with `else` guarantees that at least one block of statements in the chain will be executed. `else` statements *cannot* be written with a boolean expression, and the condition that they implicitly represent is the negation of all previous conditions.
+
+#### Nesting with `elif` and `else`
+
+Being a part of conditional statements, `elif` and `else` statements can be found nested within the bodies of other conditionals. The indentation of the block indicates which conditional the `elif` and `else` statements correspond to. 
+
+```python
+if am_hungry:
+	if is_morning:
+		print("Making pancakes! 🥞")
+	else:
+		print("Making soup! 🍜")
+```
+
+The `else` in the example above is aligned with the second `if`, testing whether or not `is_morning` is `True`. It is possible for this program to print nothing at all if `am_hungry` is `False`, but if `am_hungry` is `True`, then we will evaluate the statements in the body of the outer conditional. Those statements include that `if`-`else` pair that choose which one of the two meal options to print out depending on the value of `is_morning`. If I am hungry, I will make something to eat (and my choice will be printed). If I am not hungry, I will do & print nothing at all.
+
+If the `else` had been moved out of that indented block, then it would provide the alternative condition for the first `if` instead, leading to a fairly nonsensical program:
+
+```python
+if am_hungry:
+	if is_morning:
+		print("Making pancakes! 🥞")
+else:
+	print("Making soup! 🍜")
+```
+
+Now, if I'm hungry and it's morning, I'll make some pancakes—perfectly reasonable. But if I'm hungry and it's not morning, I won't eat! Not good. Perhaps even more perplexing: if I'm not hungry, then by default I'll make soup. To prevent such deranged behavior, keep in mind that in Python, the indentation of `elif` and `else` statements indicate to which conditional chains they belong.
 ---
 
 # Code Blocks
