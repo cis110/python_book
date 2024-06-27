@@ -204,7 +204,7 @@ We’ll start our house by adding a triangular roof with the statement `pd.fille
 
 ![alt text](img/penndraw/marked_vertices.png)
 
-We’ll finish up the structure of our house with the last new statement: `pd.filled_rectangle(0.5, 0.52, 0.24, 0.18)`. We’ve done rectangles before, so we’ll simply state that this draws a new rectangle centered at coordinates `(0.5, 0.52)`, just above the center of the screen, with a `half_width` of 0.24 and a `half_height` of 0.18. This gives us a rectangle slightly wider than it is tall, which has its coordinates and size chosen to match the triangle roof we already drew.
+We’ll finish up the structure of our house with the last new statement: `pd.filled_rectangle(0.5, 0.52, 0.24, 0.18)`. We’ve done rectangles before, so we’ll simply state that this draws a new rectangle centered at coordinates `(0.5, 0.52)`, just above the center of the screen, with a `half_width` of `0.24` and a `half_height` of `0.18`. This gives us a rectangle slightly wider than it is tall, which has its coordinates and size chosen to match the triangle roof we already drew.
 
 > Here is our nice new home sitting on its field in front of our blue sky.
 >
