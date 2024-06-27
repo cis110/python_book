@@ -41,7 +41,7 @@ For most of the work that we do in this course, we will keep the coordinate syst
 - Larger values of y coordinates refer to positions higher up.
 - Negative coordinates or coordinates with values greater than 1 are technically valid but refer to positions not visible on the canvas.
 
-Sometimes it also makes sense to discuss the height and width of shapes instead of just the positions of points. We can refer to these dimensions in coordinate space as well. For example, a horizontal line spanning between the left side of the canvas and the center point of the canvas would have a *coordinate width* of `0.5` since its width would be exactly half of the screen. 
+Sometimes it also makes sense to discuss the height and width of shapes instead of just the positions of points. We can refer to these dimensions in coordinate space as well. For example, a horizontal line spanning between the left side of the canvas `(x is 0.0)` and the center point of the canvas `(x is 0.5)` would have a *coordinate width* of `0.5` since its width would be exactly half of the screen. 
 
 ### Relating Coordinates to the Canvas (Example)
 
