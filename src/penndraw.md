@@ -8,7 +8,7 @@ You can access a full listing of PennDraw’s features on the [PennDraw Document
 
 ## Importing PennDraw
 
-PennDraw is a **library** of programs that are written in Python but does not come pre-installed with Python. PennDraw can be used in Python programs, but since PennDraw and Python are two separate pieces of software, we need to take manually identify PennDraw as a library we want to use. We do this by **importing** PennDraw. Import statements, marked by the `import` keyword, signal to Python that we will be using code from an outside library in our program. In order to import PennDraw, all we need is the following line:
+PennDraw is a **library** of programs written in Python but it does not come pre-installed with Python. PennDraw can be used in Python programs, but since PennDraw and Python are two separate pieces of software, we need to manually identify PennDraw as a library we want to use. We do this by **importing** PennDraw. Import statements, marked by the `import` keyword, signal to Python that we will be using code from an outside library in our program. In order to import PennDraw, all we need is the following line:
 
 ```python
 import penndraw as pd
