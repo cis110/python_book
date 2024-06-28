@@ -446,6 +446,53 @@ else:
 ```
 
 Now, if I'm hungry and it's morning, I'll make some pancakes—perfectly reasonable. But if I'm hungry and it's not morning, I won't eat! Not good. Perhaps even more perplexing: if I'm not hungry, then by default I'll make soup. To prevent such deranged behavior, keep in mind that in Python, the indentation of `elif` and `else` statements indicate to which conditional chains they belong.
+
+## Making Matches
+
+Conditionals are the most common tools that we'll use for decision making in our Python programs. They are typically the most useful because they are fully customizable: they accept any boolean expression as a condition. In this section we'll introduce a feature of Python called **pattern matching**, which allows us to express a common conditional pattern with a more succinct syntax.
+
+We can write a conditional to model the behavior of a responsible driver by comparing the current state of a traffic light to the set of its three possibilities: red, yellow, and green.
+
+```python
+if traffic_light == "red":
+	print("Stop!")
+if traffic_light == "yellow":
+	print("Slow down.")
+if traffic_light == "green":
+	print("Proceed carefully.")
+```
+
+This works, but it requires that we type `if traffic_light ==` several times. Python provides the `match` and `case` keywords so that we can specify the variable that we're comparing against just one time. Here is a program that behaves in exactly the same way:
+
+```python
+match traffic_light:
+	case "red":
+		print("Stop!")
+	case "yellow":
+		print("Slow down.")
+	case "green":
+		print("Proceed carefully.")
+```
+
+After `match`, we provide the value that we want to compare to. Then, we list a number of 
+
+For the next example, we'll be using discussing HTTP Status Codes. Whenever you try to load a webpage on the internet, you're asking a server for the information required to display that webpage in your browser. Most of the time, this just works: you receive the content of a webpage (the text and links and images on that page) and your browser shows it to you as a nicely rendered page. But sometimes, things go wrong. Servers can go offline, or the URL that you requested might have a typo in it. Perhaps you've encountered a "404 Not Found" error page before when you've tried to navigate to a link that doesn't exist.
+
+![alt text](img/conditionals/404.png)
+
+Whenever your browser gets a response from the page load
+
+```python
+match status:
+	case 400:
+		return "Bad request"
+	case 404:
+		return "Not found"
+	case 418:
+		return "I'm a teapot"
+	case _:
+		return "Something's wrong with the Internet"
+```
 ---
 
 # Code Blocks
