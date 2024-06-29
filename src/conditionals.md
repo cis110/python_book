@@ -446,214 +446,129 @@ else:
 ```
 
 Now, if I'm hungry and it's morning, I'll make some pancakes—perfectly reasonable. But if I'm hungry and it's not morning, I won't eat! Not good. Perhaps even more perplexing: if I'm not hungry, then by default I'll make soup. To prevent such deranged behavior, keep in mind that in Python, the indentation of `elif` and `else` statements indicate to which conditional chains they belong.
----
 
-# Code Blocks
 
-
-Code blocks are associated groups of statements that are executed together and that have the same level of *scope*.
-  - Curly Braces (`{}`) denote the start and end of code blocks.
-  - Scope refers to the region of the program where variables are able to be accessed after declaring
-
-
----
-
-# Structure of If statement 
-
-```java
-// a single if statement
-if (4 < 5 && !"Harry".equals("Smith")) { // start a new code block
-  System.out.println("Drawing a circle if condition is true");
-  PennDraw.circle(0.5, 0.5, 0.1);
-}
-// statements outside of if are run no matter what!
-System.out.println("Drawing a square no matter what.");
-PennDraw.square(0.5, 0.5, 0.1);
-```
-
-
-
----
-
-# Exercise: What Gets Printed?
-![](../img/conditionals/267Picture4.png)
-
----
-
-# Exercise: What Gets Printed?
-
-
-```java
-if (true) {
-  System.out.println("Apple");
-}
-if (10 > 10) {
-  System.out.println("Banana");
-}
-if (10 >= 10) {
-  System.out.println("Cherry");
-}
-```
-
-
-
----
-
-# [Poll Time!](https://www.polleverywhere.com/multiple_choice_polls/rEMiFXHtJn4Br9HkglfsD)
-
-
-
----
-
-# The `else` Statement
-
-<!--  -->
-
-“Which **one** of these two options should I pick?”
-
-![bg right:70% w:90%](../img/conditionals/268Picture4.png)
-
-
-
----
-
-# Structure of If-else statement 
-
-```java
-if (4 < 5 && !"Harry".equals("Smith")) { 
-  // start a new code block to run if condition is true
-  System.out.println("Drawing a circle if condition is true");
-  PennDraw.circle(0.5, 0.5, 0.1);
-} else { 
-  // start a new code block to run if condition is false
-  System.out.println("Drawing a line if condition is false");
-  PennDraw.line(0, 0, 1, 1);
-}
-// statements outside of if-else are run no matter what!
-System.out.println("Drawing a square no matter what.");
-PennDraw.square(0.5, 0.5, 0.1);
-```
-
-
-
----
-# [Poll Time!](https://www.polleverywhere.com/multiple_choice_polls/Ww0qdeTgmHsGrLQluP71i)
-
----
-
-# Nested if statements
-
-The body of a conditional contains a sequence of statements
-
-The **if** statement is, itself, a statement!
-
-- So: you can put a conditional inside of another.
-- “Only If **X** is true, then I’ll check if **Y** is true...”
-
-
-
----
-
-# Nested if statements
-
-![](../img/conditionals/308Picture2.png)
-
-
-
----
-
-# Nested if statements
-
-Follow the curly braces to figure out which “if” the “else” belongs to!
-
-(in this case, it’s the first one)
-
-![bg right:65% width:80%](../img/conditionals/280Picture3.png)
-
-
-
----
-
-# [Poll Time!](https://www.polleverywhere.com/multiple_choice_polls/hNtXaMpFGoC4EUAv5KYx9)
-
----
-
-# `if`-`else if`-`else` statements
-
-A conditional with three or more mutually exclusive options
-
-
-
-Of the statement blocks, exactly one will execute
-
-- (if you leave off the last **else**, then exactly 0 or 1 will execute)
-
-
-
----
-
-# `if`-`else if`-`else` statement 
-
-![height:70%](../img/conditionals/270Picture4.png)
-
-
----
-
-# Can you go to see your friend at the park?
-
-```java
-boolean isNearby = true;
-boolean haveHomework = true;
-if(!isNearby) {
-  System.out.println("no, too far");
-} else if (haveHomework) {
-  System.out.println("no, do HW");
-} else {
-  System.out.println("yes, go see them");
-}
-```
-
----
-## The Grammar of the Conditional
+### Summary of Conditional Structure
 
 A conditional statement consists of one essential part—the `if`—and several optional parts.
 
-1. Begin with an `if` statement. The `if` statement must include a boolean expression to test.
-2. Optionally, include any number of `else if` statements. Each `else if` statement must include a boolean expression to test. Any conditional may include zero or more `else if` statements.
-3. Optionally, include an `else` statement. The `else` statement does not include a boolean expression to test. Any conditional may include zero or one `else` statements.
+1. Conditionals always begin with an `if` statement. The `if` statement must include a boolean expression to test.
+2. Optionally, conditionals may include any number of `elif` statements. Each `elif` statement must include a boolean expression to test. Any conditional may include zero or more `elif` statements. Each `elif` statement is tested only if all previous `if` and `elif` statements had their expressions evaluate to `False`.
+3. Optionally, include an `else` statement. The `else` statement does not include a boolean expression to test. Any conditional may include zero or one `else` statements. The body of the `else` statement is only executed if all previous `if` and `elif` statements had their expressions evaluate to `False`.
 
----
-## Some Examples
+## Patterns & Making Matches
 
+### Programming Patterns
 
+As we start to develop our programming skills and introduce more features in Python, we'll find increasingly often that there are several ways to express the same *programming logic* with different *syntax features*. For one example, we can think of a simple nested `if` as being the same as a logical `and`. Consider the following snippets:
 
-```java
-if (x > y && x > z) {
-  System.out.println("x is the largest");
-} else if (y > x && y > z) {
-  System.out.println("y is the largest");
-} else if (z > x && z > y) {
-  System.out.println("z is the largest");
-} else {
-  System.out.println("two or more variables are tied for largest");
-}
+```python
+# One if, two boolean expressions joined by "and"
+if day == "Sunday" and 17 >= hour >= 22:
+	print("Go eat at Lauder!")
+
+# Two ifs, two boolean expressions at two levels
+if day == "Sunday":
+	if 17 >= hour >= 22:
+		print("Go eat at Lauder!")
 ```
 
+Both are ways of expressing the same idea but with different "spellings." Both conditionals will print the same message for exactly the same values of the two variables. In programming languages and software design, we have the concept of a programming **pattern**, which is a frequently-used bit of code design that is recognizable in its purpose. By learning to recognize patterns, you will be able to quickly understand the purpose of a piece of code without having to think so hard about it. Additionally, patterns are useful when writing code since they can be quickly deployed as a solution to a common problem you're working on. 
 
-```java
-if (a > b && a % b == 0) {
-  System.out.println("a is divisible by b");
-} else if (b > a && b % a == 0) {
-  System.out.println("b is divisible by a");
-}
+### `case` and `match` in Python
+
+Conditionals are the most common tools that we'll use for decision making in our Python programs. They are the most useful because they are fully customizable: they accept any boolean expression as a condition. Since conditionals can take any expressions as their conditions, though, it can be a bit challenging to reason about the purpose of a conditional chain: *What are the conditions supposed to represent? What are the mutually exclusive conditions? What are the implications of putting the conditions in the given order?* In this section we'll introduce a feature of Python called **pattern matching**, which allows us to express a common conditional pattern with a more succinct syntax.
+
+We can write a conditional to model the behavior of a responsible driver by comparing the current state of a traffic light to the set of its three possibilities: red, yellow, and green.
+
+```python
+if traffic_light == "red":
+	print("Stop!")
+elif traffic_light == "yellow":
+	print("Slow down.")
+elif traffic_light == "green":
+	print("Proceed carefully.")
 ```
 
+To someone reading our code later, they will observe several independent conditions and have to reason about their behavior indepedently before being able to recognize that we are just *matching* on the different possible *cases* that the `traffic_light` variable might store. Python provides the `match` and `case` keywords so that we can specify the variable that we're comparing against just one time. Here is a program that behaves in exactly the same way:
 
----
+```python
+match traffic_light:
+	case "red":
+		print("Stop!")
+	case "yellow":
+		print("Slow down.")
+	case "green":
+		print("Proceed carefully.")
+```
 
-# Live Coding: Parking Sign
+After the `match` keyword, we provide the value that we want to compare to. Then, we list a number of different `case`s, each with its own corresponding block of code that is run when the value being matched on takes that specific value. This example and the previous one behave in exactly the same way, but by using `match`, we signal to anyone reading our program what the purpose of this snippet is. In this way, we are using `match` as a pattern for selecting which outcome we desire based on a specific value of `traffic_light`.
 
-<!--  -->
+#### Example: HTTP Status Codes
 
-![bg vertical right](../img/conditionals/293Picture2.png)
+For the next example, we'll be using discussing HTTP Status Codes. **HTTP** is short for "**H**yper**t**ext **T**ransfer **P**rotocol", which is the name for the system of rules we use to send information through the internet when loading webpages. Whenever you try to load a webpage on the internet, you're asking a server for the information required to display that page in your browser. Most of the time, this just works: you receive the content of a webpage (the text and links and images on that page) and your browser shows it to you as a nicely rendered page. But sometimes, things go wrong. Servers can go offline, or the URL that you requested might have a typo in it. Perhaps you've encountered a "404 Not Found" error page before when you've tried to navigate to a link that doesn't exist.
 
+![alt text](img/conditionals/404.png)
+
+Whenever your browser gets a response from the page load under the HTTP protocol[^redundancy], that response includes a "status code" that tells your browser how to interpret its contents. Here's a brief table of those codes:
+
+| Status Code | Name                  | Meaning                                                                          |
+| ----------- | --------------------- | -------------------------------------------------------------------------------- |
+| `200`       | OK                    | "The request worked, here's the page you wanted."                                |
+| `301`       | Moved Permanently     | "What you were looking for has been moved, but here's the link to the new spot." |
+| `403`       | Forbidden             | "You're not allowed to see what you asked for."                                  |
+| `404`       | Not Found             | "What you're asking to see doesn't seem to exist."                               |
+| `500`       | Internal Server Error | "Something went wrong. Sorry!"                                                   |
+
+We could write a `match` statement to help us parse out the `status` code we receive from an HTTP response:
+
+```python
+match status:
+	case 200:
+		print("The request worked, here's the page you wanted.")
+	case 301:
+		print("What you were looking for has been moved, but here's the link to the new spot.")
+	case 403:
+		print("You're not allowed to see what you asked for.")
+	case 404:
+		print("What you're asking to see doesn't seem to exist.")
+	case 500:
+		print("Something went wrong. Sorry!")
+```
+
+One nice additional feature of pattern matching in Python is that we can merge multiple cases together using the `|` operator. If we wanted to make the previous code provide messages that are a bit more general, we could do it like so:
+
+```python
+match status:
+	case 200:
+		print("The request worked, here's the page you wanted.")
+	case 301:
+		print("What you were looking for has been moved, but here's the link to the new spot.")
+	case 403 | 404:
+		print("You asked for something you can't have.")
+	case 500:
+		print("Something went wrong. Sorry!")
+```
+
+In this case, if `status == 403` or `status == 404`, then the same message of `"You asked for something you can't have."` is printed.
+
+We can also mimic the `else` functionality of a conditional statement by using a *default case* using the `_` ("underscore") character. We could make our matching complete by providing a default case for all of the other status codes that we don't have individual matches for:
+
+```python
+match status:
+	case 200:
+		print("The request worked, here's the page you wanted.")
+	case 301:
+		print("What you were looking for has been moved, but here's the link to the new spot.")
+	case 403 | 404:
+		print("You asked for something you can't have.")
+	case 500:
+		print("Something went wrong. Sorry!")
+	case _:
+		print("Something complicated happened.")
+```
+
+With this implementation, if `case` is not equal to any of `200`, `301`, `403`, `404`, or `500`, then the default message of `"Something complicated happened."` will be printed.
+
+
+[^redundancy]: I know I just wrote "Hypertext Transfer Protocol protocol", but I think "the HTTP protocol" is nicer to read than "the HTTP". Please send all comments and complaints to `sharry@seas.upenn.edu` 👍.
