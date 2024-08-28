@@ -112,3 +112,26 @@ I'd like to say hello to you.
 I'd like to say hello to my fans.
 I'd like to say hello to my friends.
 ```
+
+
+## Reading User Input
+
+These two previous programs—`hello_world.py` and `hello_everybody.py`—behave the same way each time they're run, but programs don't always need to work this way. Much of the software that will be most familiar to you (social networks, streaming services, messaging apps) is useful because you can interact with it. To write a program of our own that works in this way, we can introduce the `input()` command.
+
+```python
+# Execution: hello_input.py
+print("Who would you like to say hello to?")
+name = input(">")         # Reads message from user, saves it
+print("Hello, ", name)    # Prints the user's message out again
+```
+
+`input()` prints out whatever prompt is provided between the parentheses, pauses the program, and waits for the user to type in some information and then press return/enter. Then, whatever message the user typed in is saved within the program to be used later. When we want to see what information the user provided, we can do so by printing out `name`. `name` is a **variable**, which is a concept we will introduce in far greater detail soon. Try running `hello_input.py` and then typing your own name into the terminal while the program is running:
+
+```console
+$ python hello_input.py
+Who would you like to say hello to?
+> Harry
+Hello, Harry
+```
+
+Each time you run the program, you can provide a different name to be greeted. While simple, this is the first program that provides a meaningful example of an **algorithm**. In traditional Computer Science, an algorithm is a finite set of steps that takes in some input information or data and produces some value as an output. Here, we have a very short algorithm that takes in a name from a user and produces a greeting for that name. As we proceed through this course, we will learn to write programs that represent much more complicated algorithms. We will also discuss how these traditionally defined algorithms compare to those algorithms that are defined in a more contemporary sense of the term, as in "the algorithm" or "AI algorithms."

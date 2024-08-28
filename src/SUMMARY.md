@@ -6,3 +6,4 @@
 - [Data Types](./datatypes.md)
 - [Variables](./variables.md)
 - [Conditionals](./conditionals.md)
+- [Sequences](./sequences.md)

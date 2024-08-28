@@ -570,5 +570,7 @@ match status:
 
 With this implementation, if `case` is not equal to any of `200`, `301`, `403`, `404`, or `500`, then the default message of `"Something complicated happened."` will be printed.
 
+Using `match` in Python actually provides quite a large number of other case definitions that you can use. We will touch on some of these later.
+
 
 [^redundancy]: I know I just wrote "Hypertext Transfer Protocol protocol", but I think "the HTTP protocol" is nicer to read than "the HTTP". Please send all comments and complaints to `sharry@seas.upenn.edu` 👍.
