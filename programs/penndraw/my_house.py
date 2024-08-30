@@ -25,5 +25,3 @@ pd.set_pen_color(pd.BLACK)  # make the pen black
 pd.polygon(0.255, 0.70, 0.745, 0.70, 0.49, 0.90)  # roof
 pd.rectangle(0.5, 0.52, 0.24, 0.18)  # house
 pd.rectangle(0.596, 0.44, 0.08, 0.1)  # door
-
-pd.point(0.54, 0.44)  # draw a doorknob

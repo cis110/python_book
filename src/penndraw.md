@@ -368,7 +368,7 @@ The parameters in both cases are identical to the parameters we just gave to `pd
 
 Let’s add a door to the house. To draw the door, we’ll need to draw its frame and then give it a doorknob.
 From our previous step, our pen is already set to draw in black with a wide radius. We don’t need to change anything there, so we use `pd.rectangle(.596, .44, 0.08, 0.1)` to draw a small, non-filled rectangle centered at `(0.596, 0.44)` with `halfWidth` of `0.08` and `halfHeight` of `0.1`. This is our door frame.
-The final step is to draw a doorknob. We use `pd.point(0.54, 0.44)` to draw a small dot on the screen at coordinate `(0.54, 0.44)` on the left-hand side of the door. Remember that having set the pen radius to `0.005` makes it so this dot is thick enough to be visible: if you draw using `pd.point()` without changing the thickness, you might not be able to see the result!
+<!-- The final step is to draw a doorknob. We use `pd.point(0.54, 0.44)` to draw a small dot on the screen at coordinate `(0.54, 0.44)` on the left-hand side of the door. Remember that having set the pen radius to `0.005` makes it so this dot is thick enough to be visible: if you draw using `pd.point()` without changing the thickness, you might not be able to see the result! -->
 
 > Our end result:
 >
