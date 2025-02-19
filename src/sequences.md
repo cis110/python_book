@@ -214,7 +214,7 @@ We'll start at position `0`, taking `"A"`. We'll take a step of `3` over to posi
 We can extend this even further with *negative* step sizes: it gets a bit tricky, but it can be useful. In these cases, we'll actually have `start` values that are greater than our `stop` values; this works since we'll be stepping backwards from `start` to `stop`:
 
 ```python-repl
->>> "devolve"[3:0:-1]
+>>> "devolve"[4:0:-1]
 'love'
 ```
 
@@ -236,14 +236,64 @@ Strings support the use of the `in` keyword to ask if one string is a subsequenc
 2. `s in s` is always `True`
 3. `"" in t` is also always `True`
 
+### Immutability and Strings
+
+While we can index, slice, concatenate and do many other operations with strings, we cannot actually modify them. In technical terms, the `str` datatype is said to be immutable.
+
+*But wait, I can set my variable to `"abcd"`, then modify it to `"AB"` and it works! Isn't that changing the string?*
+
+No, it actually is not! Consider the following code samples:
+
+**Valid code**
+```python-repl
+>>> my_var = "abcd"
+>>> print(my_var)
+abcd
+>>> my_var = "New string"
+>>> print(my_var)
+New string
+```
+
+**Invalid code**
+```python-repl
+>>> my_var = "abcd"
+>>> print(my_var)
+abcd
+>>> my_var[0] = "d"
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'str' object does not support item assignment
+```
+
+The difference is very subtle, but crucial for understanding immutability:
+- In the first sample, we are **replacing** the string stored in `my_var` (namely `"abcd"`) with **another string** (namely `"New string"`). We are modifying `my_var`, and Python is happy.
+- In the second sample, we are trying to modify **the actual string** stored in `my_var` by trying to change its first character, and Python throws an error.
+
+Expressed in another way, we are allowed to **reassign** variables that store strings. But we cannot modify the contents (i.e. characters) of the stings themselves!
+
+From this, you can understand that all of the operations we do on strings don't modify the string, but actually give you a new, possibly different string:
+
+```python-repl
+>>> string_one = "abcd"
+>>> print(string_one)
+abcd
+>>> string_two = string_one[1:2]
+>>> print(string_one)
+abcd
+>>> print(string_two)
+b
+```
+
+Strings are not the only immutable data type - ranges and tuples are also part of this club, as you will see below.
+
 ### Taking Inventory
 
-A string's identity is based on the character it contains and the order in which those characters belong. The ordering of the characters allows us to count them, starting from `0`, using **indices.** We can use **indexing** to query a string for a character stored at a particular position. We can extend indexing to **slicing** by defining a range of indices that we want to pull characters from. And we can check for **membership** inside of strings using the `in` keyword, deciding whether one string is present inside of another. Each of these properties of a string is held in common with the other sequences we'll introduce next.
+A string's identity is based on the characters it contains and the order in which those characters belong. The ordering of the characters allows us to count them, starting from `0`, using **indices.** We can use **indexing** to query a string for a character stored at a particular position. We can extend indexing to **slicing** by defining a range of indices that we want to pull characters from. And we can check for **membership** inside of strings using the `in` keyword, deciding whether one string is present inside of another. Each of these properties of a string is held in common with the other sequences we'll introduce next.
 
 
 ## Ranges
 
-If `str` is the datatype for sequences of characters, then we can think of the `range` as the corresponding type used for sequences of *numbers.* A **range** is an ordered sequence of numbers defined by a start point, stop point, and step size. Whereas a string can feature characters in any order, ranges are more narrowly constrained. They are defined by a `start`, `stop`, and `step` parameter. (Sound familiar?)
+If `str` is the immutable datatype for sequences of characters, then we can think of the `range` as the corresponding immutable type used for sequences of *numbers.* A **range** is an ordered sequence of numbers defined by a start point, stop point, and step size. Whereas a string can feature characters in any order, ranges are more narrowly constrained. They are defined by a `start`, `stop`, and `step` parameter. (Sound familiar?)
 
 ### Creating Ranges
 
@@ -269,7 +319,9 @@ Have a hard time remembering your times tables? You can list all multiples of a 
 
 ## Lists
 
-TODO: actually do it
+While ranges are very useful for iteration (see the chapter on loops), they are not great for storing data. What if you wanted to store all the PennIDs in CIS 1100? Or 
+
+**TODO:** finish lists, also link up iteration
 
 ## Tuples
 
