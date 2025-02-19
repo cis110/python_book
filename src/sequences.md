@@ -85,14 +85,32 @@ last_initial = full_name[10]    # M
 
 The indices that are valid for a sequence of length `n` always range from `0` to `n - 1`. An empty sequence, like the empty string `""`, is one that has a length of `0` and therefore has no valid indices to speak of.
 
-If you try to access an index that is not valid (because it is negative or because it is too big), you will crash your program with an `IndexError`:
+If you try to access an index that is not valid (because it is too big), you will crash your program with an `IndexError`:
 
 ```python-repl
 >>> "HSS"[100]
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 IndexError: string index out of range
->>> "HSS"[-1]
+```
+
+An interesting feature is that python also allows for **negative** indexes: `my_seq[-1]` would be the last character of the sequence `my_seq`. For a sequence of length `n`, the allowable negative indices range from `-1` to `-n`:
+
+```python-repl
+>>> "miso"[-1]
+'o'
+>>> "miso"[-2]
+'s'
+>>> "miso"[-3]
+'i'
+>>> "miso"[-4]
+'m'
+```
+
+However, an index that is 'too negative' will still result in an `IndexError`:
+
+```python-repl
+>>> "miso"[-100]
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 IndexError: string index out of range
@@ -248,3 +266,11 @@ Like slices, ranges can be customized more fully using the `start` and `step`. A
 The procedure for determining the contents of a range from its `start/stop/step` is the same as before: our first number will be `start`, and we'll `step` by a fixed amount until we cross over to the other side of `stop`. 
 
 Have a hard time remembering your times tables? You can list all multiples of a number in a certain range using the `step` parameter. `range(0, 100, 9)` gives all multiples of `9` between `0` and `99`, whereas `range(0, 100, 13)` does the same for multiples of `13`.
+
+## Lists
+
+TODO: actually do it
+
+## Tuples
+
+TODO: actually do it
