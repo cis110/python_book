@@ -85,14 +85,32 @@ last_initial = full_name[10]    # M
 
 The indices that are valid for a sequence of length `n` always range from `0` to `n - 1`. An empty sequence, like the empty string `""`, is one that has a length of `0` and therefore has no valid indices to speak of.
 
-If you try to access an index that is not valid (because it is negative or because it is too big), you will crash your program with an `IndexError`:
+If you try to access an index that is not valid (because it is too big), you will crash your program with an `IndexError`:
 
 ```python-repl
 >>> "HSS"[100]
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 IndexError: string index out of range
->>> "HSS"[-1]
+```
+
+An interesting feature is that python also allows for **negative** indexes: `my_seq[-1]` would be the last character of the sequence `my_seq`. For a sequence of length `n`, the allowable negative indices range from `-1` to `-n`:
+
+```python-repl
+>>> "miso"[-1]
+'o'
+>>> "miso"[-2]
+'s'
+>>> "miso"[-3]
+'i'
+>>> "miso"[-4]
+'m'
+```
+
+However, an index that is 'too negative' will still result in an `IndexError`:
+
+```python-repl
+>>> "miso"[-100]
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 IndexError: string index out of range
@@ -196,7 +214,7 @@ We'll start at position `0`, taking `"A"`. We'll take a step of `3` over to posi
 We can extend this even further with *negative* step sizes: it gets a bit tricky, but it can be useful. In these cases, we'll actually have `start` values that are greater than our `stop` values; this works since we'll be stepping backwards from `start` to `stop`:
 
 ```python-repl
->>> "devolve"[3:0:-1]
+>>> "devolve"[4:0:-1]
 'love'
 ```
 
@@ -218,14 +236,64 @@ Strings support the use of the `in` keyword to ask if one string is a subsequenc
 2. `s in s` is always `True`
 3. `"" in t` is also always `True`
 
+### Immutability and Strings
+
+While we can index, slice, concatenate and do many other operations with strings, we cannot actually modify them. In technical terms, the `str` datatype is said to be immutable.
+
+*But wait, I can set my variable to `"abcd"`, then modify it to `"AB"` and it works! Isn't that changing the string?*
+
+No, it actually is not! Consider the following code samples:
+
+**Valid code**
+```python-repl
+>>> my_var = "abcd"
+>>> print(my_var)
+abcd
+>>> my_var = "New string"
+>>> print(my_var)
+New string
+```
+
+**Invalid code**
+```python-repl
+>>> my_var = "abcd"
+>>> print(my_var)
+abcd
+>>> my_var[0] = "d"
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'str' object does not support item assignment
+```
+
+The difference is very subtle, but crucial for understanding immutability:
+- In the first sample, we are **replacing** the string stored in `my_var` (namely `"abcd"`) with **another string** (namely `"New string"`). We are modifying `my_var`, and Python is happy.
+- In the second sample, we are trying to modify **the actual string** stored in `my_var` by trying to change its first character, and Python throws an error.
+
+Expressed in another way, we are allowed to **reassign** variables that store strings. But we cannot modify the contents (i.e. characters) of the stings themselves!
+
+From this, you can understand that all of the operations we do on strings don't modify the string, but actually give you a new, possibly different string:
+
+```python-repl
+>>> string_one = "abcd"
+>>> print(string_one)
+abcd
+>>> string_two = string_one[1:2]
+>>> print(string_one)
+abcd
+>>> print(string_two)
+b
+```
+
+Strings are not the only immutable data type - ranges and tuples are also part of this club, as you will see below.
+
 ### Taking Inventory
 
-A string's identity is based on the character it contains and the order in which those characters belong. The ordering of the characters allows us to count them, starting from `0`, using **indices.** We can use **indexing** to query a string for a character stored at a particular position. We can extend indexing to **slicing** by defining a range of indices that we want to pull characters from. And we can check for **membership** inside of strings using the `in` keyword, deciding whether one string is present inside of another. Each of these properties of a string is held in common with the other sequences we'll introduce next.
+A string's identity is based on the characters it contains and the order in which those characters belong. The ordering of the characters allows us to count them, starting from `0`, using **indices.** We can use **indexing** to query a string for a character stored at a particular position. We can extend indexing to **slicing** by defining a range of indices that we want to pull characters from. And we can check for **membership** inside of strings using the `in` keyword, deciding whether one string is present inside of another. Each of these properties of a string is held in common with the other sequences we'll introduce next.
 
 
 ## Ranges
 
-If `str` is the datatype for sequences of characters, then we can think of the `range` as the corresponding type used for sequences of *numbers.* A **range** is an ordered sequence of numbers defined by a start point, stop point, and step size. Whereas a string can feature characters in any order, ranges are more narrowly constrained. They are defined by a `start`, `stop`, and `step` parameter. (Sound familiar?)
+If `str` is the immutable datatype for sequences of characters, then we can think of the `range` as the corresponding immutable type used for sequences of *numbers.* A **range** is an ordered sequence of numbers defined by a start point, stop point, and step size. Whereas a string can feature characters in any order, ranges are more narrowly constrained. They are defined by a `start`, `stop`, and `step` parameter. (Sound familiar?)
 
 ### Creating Ranges
 
@@ -248,3 +316,184 @@ Like slices, ranges can be customized more fully using the `start` and `step`. A
 The procedure for determining the contents of a range from its `start/stop/step` is the same as before: our first number will be `start`, and we'll `step` by a fixed amount until we cross over to the other side of `stop`. 
 
 Have a hard time remembering your times tables? You can list all multiples of a number in a certain range using the `step` parameter. `range(0, 100, 9)` gives all multiples of `9` between `0` and `99`, whereas `range(0, 100, 13)` does the same for multiples of `13`.
+
+## Lists
+
+While ranges are very useful for iteration (see the chapter on loops), they are not great for storing data. What if you wanted to remember all the PennIDs in CIS 1100? Or the tasks you have to complete tomorrow? Or the first 5000 prime numbers?
+
+Lists are the answer! Simply put, a list is a mutable, ordered collection of things. You can add things to it, you can remove things from it, you know if an element comes before or after another, and the elements inside a list don't even have to have the same data type.🤯
+
+### Creating a list
+
+The simplest of lists is the empty list, denoted as a pair of square brackets `[]` with nothing in between. If we want a list that contains the number 1, we would define it as `[1]`. If we want a list that contains multiple elements, we separate them by commas: `[1, "Harry", 50]`.
+
+```python-repl
+>>> empty_list = []
+>>> print(empty_list)
+[]
+>>> one_elem = [1]
+>>> print(one_elem)
+[1]
+>>> multiple_elems = [1, "Harry", 50]
+>>> print(multiple_elems)
+[1, 'Harry', 50]
+```
+
+### Working with a list
+#### Basic sequence operations
+Lists support most of the operations that strings support. Consider the list `my_list = ["a", "b", 23, 55, 70]` for the following examples:
+- Getting the length: `len(my_list) # evaluates to 5`
+- Getting the i-th element: `my_list[2] # evaluates to 23`
+- Slicing: `my_list[1:3] # evaluates to ['b', 23]`
+- Concatenation: `my_list + [22, "a"] # evaluates to ['a', 'b, 23, 55, 70, 22, 'a']`
+- Membership: `23 in my_list # evaluates to True`
+
+> *Note: When using a string, we were able to check both if a character is in a string (`"c" in "chocolate"`) and if a sequence of characters is in a string (`"la" in "chocolate"`). However, since lists can store any type, including **other lists**, the expression `[23, 55] in my_list` will not check if the elements 22 and 55 are in `my_list`, but rather if the **list** `[23, 55]` is an element in `my_list`.*
+
+Since lists are mutable, i.e. we can modify them, they also support some extra operations, which are detailed below.
+
+#### List specific operations
+
+The first way to modify a list is to add an element to it. This can be done either by **appending** it to the end of the list, or **inserting** it at a particular index:
+
+```python-repl
+>>> lst = []
+>>> lst.append(13) # add the element 13 to the end
+>>> print(lst)
+[13]
+>>> lst.append("string") # add the element "string" to the end
+>>> print(lst)
+[13, 'string']
+>>> lst.append([1, 2]) # add the element [1, 2] to the end
+>>> print(lst)
+[13, 'string', [1, 2]]
+>>> lst.append(7) # add the element 7 to the end
+>>> print(lst)
+[13, 'string', [1, 2], 7]
+>>> print(len(lst))
+4
+>>> lst.insert(2, 66) # insert the element 66 at index 2
+>>> print(lst)
+[13, 'string', 66, [1, 2], 7]
+```
+
+The second list-specific operation is changing an element at a particular index:
+
+```python-repl
+>>> lst = ['a', 'b', 'c', 'd', 'e']
+>>> print(lst)
+['a', 'b', 'c', 'd', 'e']
+>>> lst[2] = 50 # change the element at index 2 to the value 50
+>>> print(lst)
+['a', 'b', 50, 'd', 'e']
+```
+
+The third thing we are allowed to do with a list is to **extend** it by appending to it all the elements from another list:
+
+```python-repl
+>>> print(lst)
+['a', 'b', 50, 'd', 'e']
+>>> lst.extend([20, 21])
+>>> print(lst)
+['a', 'b', 50, 'd', 'e', 20, 21]
+```
+
+We are also allowed to remove elements from a list in a few different ways:
+- `lst.remove(x)` removes the first occurrence of `x` from `lst`. Will cause a `ValueError` error if `x` is not in `lst`
+
+  ```python-repl
+  >>> print(lst)
+  ['a', 'b', 50, 'd', 'e', 20, 21]
+  >>> lst.remove(50)
+  >>> print(lst)
+  ['a', 'b', 'd', 'e', 20, 21]
+  >>> lst.remove(50)
+  Traceback (most recent call last):
+    File "<stdin>", line 1, in <module>
+  ValueError: list.remove(x): x not in list
+  ```
+- `lst.pop(i)` removes and returns the element at position `i`. If no index is specified, it will default to removing and returning the last element
+
+  ```python-repl
+  >>> lst = ["a", "b", "c"]
+  >>> removed_item = lst.pop(1)
+  >>> print(lst)
+  ['a', 'c']
+  >>> print(removed_item)
+  b
+  >>> removed_item = lst.pop()
+  >>> print(lst)
+  ['a']
+  >>> print(removed_item)
+  c
+  ```
+- `lst.clear()` removes all elements from the list
+
+  ```python-repl
+  >>> lst = ["h", "a", "p", "p", 1]
+  >>> lst.clear() # lst is now an empty list
+  >>> print(lst)
+  []
+  ```
+
+### Recap
+
+Lists are one of the most versatile data types in Python, as they can be used to represent many real-world concepts, are mutable, can store any data type within them, and are easy to work with. However, more specialized data types are still worth knowing and understanding, as they solve particular problems much better compared to lists. 
+
+## Tuples
+
+As we just saw, lists are great and all, but not every job should be solved with a multi-tool. This is where we introduce our last sequence type, the `tuple`. They are used to represent immutable ordered pairings of elements. Think student names, emails, their birthdays, and any other information we might want to to hold about them in our program.
+
+### Creating a tuple
+
+In the same way that the simplest list is the empty list, wrote as `[]`, the simplest tuple is the empty tuple, wrote as `()`. If we want a tuple with more elements, we similarly separate them using commas:
+
+```python-repl
+>>> my_tpl = (1100, "sharry", "Aug 29") # tuple with 3 elements
+>>> print(my_tpl)
+(1100, 'sharry', 'Aug 29')
+>>> print(len(my_tpl))
+3
+>>> my_tpl = ("20",) # tuple with 1 element
+>>> print(my_tpl)
+('20',)
+>>> print(len(my_tpl))
+1
+```
+
+Notice that if we want a tuple with a single element, we have to add a comma after it. Without the comma, surrounding a value with parentheses does not place it in a tuple, since the parentheses now have just their "arithmetic meaning" of isolating parts of an expression:
+
+```python-repl
+>>> not_a_tpl = ("element")
+>>> type(not_a_tpl)
+<class 'str'>
+>>> print(not_a_tpl)
+element
+>>> my_tpl = ("element",)
+>>> type(my_tpl)
+<class 'tuple'>
+>>> print(my_tpl)
+('element',)
+```
+
+### Working with a tuple
+
+As with other sequences, we can:
+- Get the length of a tuple using `len`
+- Index into tuples: `("a", 20, 15, "b")[2] # evaluates to 15`
+- Concatenate two tuples: `(20, "a") + ("b", 30) # evaluates to the new tuple (20, 'a', 'b', 30)`
+- Check for membership in a tuple: `"a" in ("bac", 0.5) # evaluates to False`
+- Slice a tuple: `(10, 20, 30, 40)[1:3] # evaluates to (20, 30)`
+
+The main advantage of tuples is their immutability - they're basically unchangeable lists - which makes them perfect for representing collections of related data. If, for instance, you had to design a program that computes final grades for CIS 1100 students, you'd probably represent each student using a tuple, and then make a list containing all the students. Now there's no way to mix things up, or change grades by mistake!
+
+## Summary table
+
+There's a lot to learn about sequences, especially since they're one of the first tools we use to represent real-world things in code. However, the essentials are succinct enough to fit in the table below:
+
+| Type | Element type | Mutable | Example |
+| :--: | :----------: | :-----: | ------- |
+| `str`| characters <br> (strings of len 1) | False | `"Hello"` <br> `'Cis 1100'` |
+| `list` | anything   |  True  | `[]`<br>`[1, 2, "a"]`  |
+| `tuple` | anything | False | `()` <br> `(1,)`, `("Harry", True)` |
+| `range` | `int` | False | `range(3)` - outputs 0, 1, 2<br>`range(1, 5, 2)` - outputs 1, 3 |

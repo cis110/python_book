@@ -16,4 +16,9 @@ Github allows you to edit files directly on the web. If you notice a typo or mis
 4. You can read more about the `mdbook` tool [here.](https://rust-lang.github.io/mdBook/)
 
 ## TODOs:
-[ ] Cover Loops, Comprehensions, Functions, sets, dicts, unit-testing ideally keeping pace with the course
+Cover the following topics, ideally keeping pace with the course:
+- [ ] Loops, Comprehensions
+- [ ] Functions
+- [ ] Sets, dicts 
+- [ ] Unit-testing
+- [ ] In the section on lists, make a link to loops once the chapter is made
