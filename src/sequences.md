@@ -436,9 +436,9 @@ We are also allowed to remove elements from a list in a few different ways:
   []
   ```
 
+### Recap
 
-
-[comment]: <> (TODO: make a conclusion)
+Lists are one of the most versatile data types in Python, as they can be used to represent many real-world concepts, are mutable, can store any data type within them, and are easy to work with. However, more specialized data types are still worth knowing and understanding, as they solve particular problems much better compared to lists. 
 
 ## Tuples
 
