@@ -319,10 +319,131 @@ Have a hard time remembering your times tables? You can list all multiples of a 
 
 ## Lists
 
-While ranges are very useful for iteration (see the chapter on loops), they are not great for storing data. What if you wanted to store all the PennIDs in CIS 1100? Or 
+While ranges are very useful for iteration (see the chapter on loops), they are not great for storing data. What if you wanted to remember all the PennIDs in CIS 1100? Or the tasks you have to complete tomorrow? Or the first 5000 prime numbers?
 
-**TODO:** finish lists, also link up iteration
+Lists are the answer! Simply put, a list is a mutable, ordered collection of things. You can add things to it, you can remove things from it, you know if an element comes before or after another, and the elements inside a list don't even have to have the same data type.🤯
+
+### Creating a list
+
+The simplest of lists is the empty list, denoted as a pair of square brackets `[]` with nothing in between. If we want a list that contains the number 1, we would define it as `[1]`. If we want a list that contains multiple elements, we separate them by commas: `[1, "Harry", 50]`.
+
+```python-repl
+>>> empty_list = []
+>>> print(empty_list)
+[]
+>>> one_elem = [1]
+>>> print(one_elem)
+[1]
+>>> multiple_elems = [1, "Harry", 50]
+>>> print(multiple_elems)
+[1, 'Harry', 50]
+```
+
+### Working with a list
+#### Basic sequence operations
+Lists support most of the operations that strings support. Consider the list `my_list = ["a", "b", 23, 55, 70]` for the following examples:
+- Getting the length: `len(my_list) # evaluates to 5`
+- Getting the i-th element: `my_list[2] # evaluates to 23`
+- Slicing: `my_list[1:3] # evaluates to ['b', 23]`
+- Concatenation: `my_list + [22, "a"] # evaluates to ['a', 'b, 23, 55, 70, 22, 'a']`
+- Membership: `23 in my_list # evaluates to True`
+
+> *Note: When using a string, we were able to check both if a character is in a string (`"c" in "chocolate"`) and if a sequence of characters is in a string (`"la" in "chocolate"`). However, since lists can store any type, including **other lists**, the expression `[23, 55] in my_list` will not check if the elements 22 and 55 are in `my_list`, but rather if the **list** `[23, 55]` is an element in `my_list`.*
+
+Since lists are mutable, i.e. we can modify them, they also support some extra operations, which are detailed below.
+
+#### List specific operations
+
+The first way to modify a list is to add an element to it. This can be done either by **appending** it to the end of the list, or **inserting** it at a particular index:
+
+```python-repl
+>>> lst = []
+>>> lst.append(13) # add the element 13 to the end
+>>> print(lst)
+[13]
+>>> lst.append("string") # add the element "string" to the end
+>>> print(lst)
+[13, 'string']
+>>> lst.append([1, 2]) # add the element [1, 2] to the end
+>>> print(lst)
+[13, 'string', [1, 2]]
+>>> lst.append(7) # add the element 7 to the end
+>>> print(lst)
+[13, 'string', [1, 2], 7]
+>>> print(len(lst))
+4
+>>> lst.insert(2, 66) # insert the element 66 at index 2
+>>> print(lst)
+[13, 'string', 66, [1, 2], 7]
+```
+
+The second list-specific operation is changing an element at a particular index:
+
+```python-repl
+>>> lst = ['a', 'b', 'c', 'd', 'e']
+>>> print(lst)
+['a', 'b', 'c', 'd', 'e']
+>>> lst[2] = 50 # change the element at index 2 to the value 50
+>>> print(lst)
+['a', 'b', 50, 'd', 'e']
+```
+
+The third thing we are allowed to do with a list is to **extend** it by appending to it all the elements from another list:
+
+```python-repl
+>>> print(lst)
+['a', 'b', 50, 'd', 'e']
+>>> lst.extend([20, 21])
+>>> print(lst)
+['a', 'b', 50, 'd', 'e', 20, 21]
+```
+
+We are also allowed to remove elements from a list in a few different ways:
+- `lst.remove(x)` removes the first occurrence of `x` from `lst`. Will cause an error if `x` is not in `lst`
+
+  ```python-repl
+  >>> print(lst)
+  ['a', 'b', 50, 'd', 'e', 20, 21]
+  >>> lst.remove(50)
+  >>> print(lst)
+  ['a', 'b', 'd', 'e', 20, 21]
+  >>> lst.remove(50)
+  Traceback (most recent call last):
+    File "<stdin>", line 1, in <module>
+  ValueError: list.remove(x): x not in list
+  ```
+- `lst.pop(i)` removes and returns the element at position `i`. If no index is specified, it will default to removing and returning the last element
+
+  ```python-repl
+  >>> lst = ["a", "b", "c"]
+  >>> removed_item = lst.pop(1)
+  >>> print(lst)
+  ['a', 'c']
+  >>> print(removed_item)
+  b
+  >>> removed_item = lst.pop()
+  >>> print(lst)
+  ['a']
+  >>> print(removed_item)
+  c
+  ```
+- `lst.clear()` removes all elements from the list
+
+  ```python-repl
+  >>> lst = ["h", "a", "p", "p", 1]
+  >>> lst.clear() # lst is now an empty list
+  >>> print(lst)
+  []
+  ```
+
+
+
+[comment]: <> (TODO: make a conclusion)
 
 ## Tuples
 
-TODO: actually do it
+[comment]: <> (TODO: actually do it)
+
+## Summary table
+
+[comment]: <> (TODO: insert the table from the video slides / the rec slides)
