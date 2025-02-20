@@ -399,7 +399,7 @@ The third thing we are allowed to do with a list is to **extend** it by appendin
 ```
 
 We are also allowed to remove elements from a list in a few different ways:
-- `lst.remove(x)` removes the first occurrence of `x` from `lst`. Will cause an error if `x` is not in `lst`
+- `lst.remove(x)` removes the first occurrence of `x` from `lst`. Will cause a `ValueError` error if `x` is not in `lst`
 
   ```python-repl
   >>> print(lst)
