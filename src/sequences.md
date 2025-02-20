@@ -442,8 +442,58 @@ Lists are one of the most versatile data types in Python, as they can be used to
 
 ## Tuples
 
-[comment]: <> (TODO: actually do it)
+As we just saw, lists are great and all, but not every job should be solved with a multi-tool. This is where we introduce our last sequence type, the `tuple`. They are used to represent immutable ordered pairings of elements. Think student names, emails, their birthdays, and any other information we might want to to hold about them in our program.
+
+### Creating a tuple
+
+In the same way that the simplest list is the empty list, wrote as `[]`, the simplest tuple is the empty tuple, wrote as `()`. If we want a tuple with more elements, we similarly separate them using commas:
+
+```python-repl
+>>> my_tpl = (1100, "sharry", "Aug 29") # tuple with 3 elements
+>>> print(my_tpl)
+(1100, 'sharry', 'Aug 29')
+>>> print(len(my_tpl))
+3
+>>> my_tpl = ("20",) # tuple with 1 element
+>>> print(my_tpl)
+('20',)
+>>> print(len(my_tpl))
+1
+```
+
+Notice that if we want a tuple with a single element, we have to add a comma after it. Without the comma, surrounding a value with parentheses does not place it in a tuple, since the parentheses now have just their "arithmetic meaning" of isolating parts of an expression:
+
+```python-repl
+>>> not_a_tpl = ("element")
+>>> type(not_a_tpl)
+<class 'str'>
+>>> print(not_a_tpl)
+element
+>>> my_tpl = ("element",)
+>>> type(my_tpl)
+<class 'tuple'>
+>>> print(my_tpl)
+('element',)
+```
+
+### Working with a tuple
+
+As with other sequences, we can:
+- Get the length of a tuple using `len`
+- Index into tuples: `("a", 20, 15, "b")[2] # evaluates to 15`
+- Concatenate two tuples: `(20, "a") + ("b", 30) # evaluates to the new tuple (20, 'a', 'b', 30)`
+- Check for membership in a tuple: `"a" in ("bac", 0.5) # evaluates to False`
+- Slice a tuple: `(10, 20, 30, 40)[1:3] # evaluates to (20, 30)`
+
+The main advantage of tuples is their immutability - they're basically unchangeable lists - which makes them perfect for representing collections of related data. If, for instance, you had to design a program that computes final grades for CIS 1100 students, you'd probably represent each student using a tuple, and then make a list containing all the students. Now there's no way to mix things up, or change grades by mistake!
 
 ## Summary table
 
-[comment]: <> (TODO: insert the table from the video slides / the rec slides)
+There's a lot to learn about sequences, especially since they're one of the first tools we use to represent real-world things in code. However, the essentials are succinct enough to fit in the table below:
+
+| Type | Element type | Mutable | Example |
+| :--: | :----------: | :-----: | ------- |
+| `str`| characters <br> (strings of len 1) | False | `"Hello"` <br> `'Cis 1100'` |
+| `list` | anything   |  True  | `[]`<br>`[1, 2, "a"]`  |
+| `tuple` | anything | False | `()` <br> `(1,)`, `("Harry", True)` |
+| `range` | `int` | False | `range(3)` - outputs 0, 1, 2<br>`range(1, 5, 2)` - outputs 1, 3 |

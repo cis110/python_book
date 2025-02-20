@@ -21,3 +21,4 @@ Cover the following topics, ideally keeping pace with the course:
 - [ ] Functions
 - [ ] Sets, dicts 
 - [ ] Unit-testing
+- [ ] In the section on lists, make a link to loops once the chapter is made
