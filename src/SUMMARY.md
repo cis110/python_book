@@ -9,3 +9,4 @@
 - [Animation & Interactivity](./interactivity.md)
 - [Sequences](./sequences.md)
 - [Command Line Arguments](./clargs.md)
+- [Loops and Comprehension](./loops.md)
