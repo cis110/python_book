@@ -12,7 +12,8 @@
 
 ## Overview
 
-> *Some quote*
-> -- Some Smart Person, *A Source*
+[comment]: <> (TODO: Harry please approve of this or change it, I felt like it's also an interesting pun since if you don't remember to advance in your iteration, you can end up in an infinite loop)
+> *Those who do not remember the past are condemned to repeat it*
+> -- George Santayana, *The Life of Reason*
 
-Yapping about programs being linear, copy pasting code, animation.
+Our programs so far have been pretty linear - going from one instruction to the next, potentially skipping a few when using a conditional, but with a clear start and end nonetheless. However, what if we wanted to do one thing 100 times? 10,000 times? Endlessly, only stopping when a condition is met? Copy-pasting can only get us so far
