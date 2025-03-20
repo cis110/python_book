@@ -10,3 +10,4 @@
 - [Sequences](./sequences.md)
 - [Command Line Arguments](./clargs.md)
 - [Loops and Comprehension](./loops.md)
+- [File Reading and Writing](./file_io.md)

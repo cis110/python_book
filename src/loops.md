@@ -10,6 +10,9 @@
 - Learn how to repeat some action while a condition holds using a `while` loop
 - Identify cases when a `for` loop is more appropriate than a `while` loop and vice versa
 
+[comment]: <> (TODO: add comprehension learning objectives)
+[comment]: <> (TODO: add enumerate learning objectives)
+
 ## Overview
 
 [comment]: <> (TODO: Harry please approve of this or change it, I felt like it's also an interesting pun since if you don't remember to advance in your iteration, you can end up in an infinite loop)
