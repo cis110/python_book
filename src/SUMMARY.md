@@ -9,3 +9,9 @@
 - [Animation & Interactivity](./interactivity.md)
 - [Sequences](./sequences.md)
 - [Command Line Arguments](./clargs.md)
+
+
+---------------
+
+# Miscellaneous 
+- [Publishing Notebooks](./misc/pub_notebooks.md)
